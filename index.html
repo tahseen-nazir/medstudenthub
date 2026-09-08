@@ -1,44 +1,140 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MedStudentHub</title>
 <style>
-body{margin:0;font-family:system-ui;background:#f5f8fb;color:#183247}header{background:#12304a;color:white;padding:16px}main{max-width:1050px;margin:auto;padding:20px}.logo{font-size:22px;font-weight:800}.hero,.card{background:white;border-radius:16px;padding:22px;margin:16px 0;box-shadow:0 6px 22px #12304a12}.hero{background:linear-gradient(135deg,#12304a,#147d70);color:white}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.tag{display:inline-block;background:#e7f8f4;color:#087a65;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:700}.btn{padding:10px 14px;border:0;border-radius:9px;font-weight:700;cursor:pointer}.primary{background:#12a889;color:white}.secondary{background:white;border:1px solid #dfe8ee;color:#12304a}.option{display:block;width:100%;text-align:left;padding:10px;margin:7px 0;border:1px solid #dfe8ee;background:white;border-radius:8px}.correct{background:#eaf9f2!important;border-color:#36a46d!important}.wrong{background:#fff0ee!important;border-color:#d66!important}.explain{display:none;background:#effaf7;padding:12px;border-left:4px solid #12a889}.show{display:block}.field{margin:10px 0}.field input,.field textarea,.field select{width:100%;padding:10px;border:1px solid #dfe8ee;border-radius:8px;box-sizing:border-box}.modal{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:15px}.modalbox{background:white;border-radius:16px;padding:22px;width:min(500px,100%)}.hidden{display:none!important}.small{font-size:13px;color:#718191}@media(max-width:750px){.grid{grid-template-columns:1fr}nav{display:none}}
-</style></head>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#f5f8fb;color:#183247}
+header{background:#12304a;color:#fff;padding:16px 20px}.wrap{max-width:1050px;margin:auto}
+.logo{font-size:23px;font-weight:800}.logo span{color:#28d5b0}
+button{cursor:pointer}.btn{padding:10px 15px;border:0;border-radius:9px;font-weight:700}.primary{background:#12a889;color:#fff}.secondary{background:#fff;color:#12304a;border:1px solid #dce5ea}
+main{padding:22px}.hero,.card{background:#fff;border-radius:16px;padding:22px;margin:16px 0;box-shadow:0 6px 22px #12304a12}
+.hero{background:linear-gradient(135deg,#12304a,#147d70);color:#fff}.hero input{width:100%;padding:12px;border:0;border-radius:9px;margin-top:14px}
+.modal{position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:18px}
+.modal.hidden{display:none}.modalbox{background:#fff;width:min(480px,100%);padding:24px;border-radius:16px}.field{width:100%;padding:11px;margin:8px 0;border:1px solid #dce5ea;border-radius:8px}.msg{min-height:20px;color:#c0392b;font-size:14px}.hidden{display:none!important}
+</style>
+</head>
 <body>
-<header><div class="logo">MedStudent<span style="color:#55d7bd">Hub</span></div>
-<div style="margin-top:8px"><button id="login" class="btn secondary">Login</button> <button id="signup" class="btn primary">Sign up</button> <button id="logout" class="btn secondary hidden">Logout</button> <span id="user"></span></div></header>
-<main>
-<section class="hero"><h1>Practice. Understand. Discuss.</h1><p>Medical MCQs, explanations, bookmarks and student discussions.</p>
-<input id="search" placeholder="Search questions..." style="padding:12px;width:100%;box-sizing:border-box;border-radius:9px;border:0"></section>
-<h2>MCQs</h2><div id="questions" class="grid"><div class="card">Connect Supabase to load questions.</div></div>
-<h2>Discussions</h2><div class="card"><button id="postBtn" class="btn primary">Start discussion</button><div id="discussions"></div></div>
-<section id="admin" class="hidden"><h2>Admin panel</h2><div class="card"><h3>Add MCQ</h3>
-<div class="field"><select id="subject"><option>Medicine</option><option>Surgery</option><option>Pediatrics</option><option>OBGYN</option><option>Pharmacology</option><option>Pathology</option><option>Anatomy</option><option>Microbiology</option></select></div>
-<div class="field"><textarea id="question" placeholder="Question"></textarea></div>
-<div class="field"><input id="a" placeholder="Option A"></div><div class="field"><input id="b" placeholder="Option B"></div><div class="field"><input id="c" placeholder="Option C"></div><div class="field"><input id="d" placeholder="Option D"></div>
-<div class="field"><select id="correct"><option value="0">Correct: A</option><option value="1">Correct: B</option><option value="2">Correct: C</option><option value="3">Correct: D</option></select></div>
-<div class="field"><textarea id="explanation" placeholder="Explanation"></textarea></div><button id="add" class="btn primary">Publish MCQ</button></div></section>
+<header><div class="wrap">
+<div class="logo">MedStudent<span>Hub</span></div>
+<div style="margin-top:10px">
+<button type="button" id="loginBtn" class="btn secondary">Login</button>
+<button type="button" id="signupBtn" class="btn primary">Sign up</button>
+<button type="button" id="logoutBtn" class="btn secondary hidden">Logout</button>
+<span id="userText" style="margin-left:10px"></span>
+</div></div></header>
+
+<main class="wrap">
+<section class="hero">
+<h1>Practice. Understand. Discuss.</h1>
+<p>Medical MCQs, explanations, bookmarks and student discussions.</p>
+<input id="search" placeholder="Search questions...">
+</section>
+<h2>MCQs</h2><div id="questions"><div class="card">Loading...</div></div>
+<h2>Discussions</h2>
+<div class="card"><button type="button" id="postBtn" class="btn primary">Start discussion</button><div id="discussions"></div></div>
 </main>
-<div id="modal" class="modal hidden"><div class="modalbox"><button onclick="modal.classList.add('hidden')" class="btn secondary">Close</button><h2 id="mtitle">Login</h2><input id="email" class="field" type="email" placeholder="Email"><input id="password" class="field" type="password" placeholder="Password"><button id="submit" class="btn primary">Login</button><p><a href="#" id="switch">Create account</a></p><p id="msg" class="small"></p></div></div>
-<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+<div id="authModal" class="modal hidden" aria-hidden="true">
+<div class="modalbox">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h2 id="authTitle">Create account</h2>
+<button type="button" id="closeBtn" class="btn secondary">Close</button>
+</div>
+<input id="email" class="field" type="email" autocomplete="email" placeholder="Email">
+<input id="password" class="field" type="password" autocomplete="new-password" placeholder="Password (minimum 6 characters)">
+<button type="button" id="submitAuth" class="btn primary">Sign up</button>
+<p><a href="#" id="switchAuth">Already have an account? Login</a></p>
+<div id="authMsg" class="msg"></div>
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const URL="https://egrbgayjmjplfwjwfesq.supabase.co",KEY="sb_publishable_GLt4N1ChNKdPC68EI8NApQ_oYP0s8on";
-const ready=!URL.includes("PASTE_")&&!KEY.includes("PASTE_");
-const db=(ready && window.supabase)?window.supabase.createClient(URL,KEY):null;
-if(ready && !db) console.error("Supabase browser library did not load.");
-let user=null,admin=false,mode="login";
-const $=id=>document.getElementById(id); const esc=s=>String(s??"").replace(/[&<>"']/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]));
-function openAuth(m){mode=m;$("mtitle").textContent=m==="login"?"Login":"Create account";$("submit").textContent=m==="login"?"Login":"Sign up";$("switch").textContent=m==="login"?"Create account":"Login";$("msg").textContent="";$("modal").classList.remove("hidden")}
-$("login").onclick=()=>openAuth("login");$("signup").onclick=()=>openAuth("signup");$("switch").onclick=e=>{e.preventDefault();openAuth(mode==="login"?"signup":"login")};
-$("submit").onclick=async()=>{if(!ready)return $("msg").textContent="Connect Supabase first.";let r=mode==="login"?await db.auth.signInWithPassword({email:$("email").value,password:$("password").value}):await db.auth.signUp({email:$("email").value,password:$("password").value});if(r.error)$("msg").textContent=r.error.message;else $("modal").classList.add("hidden")};
-$("logout").onclick=()=>db.auth.signOut();
-async function session(){if(!ready)return;let r=await db.auth.getSession();setUser(r.data.session?.user);db.auth.onAuthStateChange((e,s)=>setUser(s?.user))}
-async function setUser(u){user=u;admin=false;if(u){$("user").textContent=u.email;$("login").classList.add("hidden");$("signup").classList.add("hidden");$("logout").classList.remove("hidden");let p=await db.from("profiles").select("role").eq("id",u.id).maybeSingle();admin=p.data?.role==="admin";if(admin)$("admin").classList.remove("hidden")}else{$("user").textContent="";$("login").classList.remove("hidden");$("signup").classList.remove("hidden");$("logout").classList.add("hidden");$("admin").classList.add("hidden")}loadQuestions();loadDiscussions()}
-async function loadQuestions(){if(!ready)return;let q=db.from("questions").select("*").eq("published",true).order("created_at",{ascending:false});let s=$("search").value.trim();if(s)q=q.or(`question.ilike.%${s}%,topic.ilike.%${s}%`);let r=await q.limit(100);if(r.error)return;$("questions").innerHTML=r.data.length?r.data.map(x=>`<article class="card"><span class="tag">${esc(x.subject)}</span><h3>${esc(x.question)}</h3>${(x.options||[]).map((o,i)=>`<button class="option" onclick="answer(this,${i},${x.correct_index})">${String.fromCharCode(65+i)}. ${esc(o)}</button>`).join("")}<div class="explain" id="e${x.id}"><b>Explanation:</b> ${esc(x.explanation||"")}</div><button class="btn secondary" onclick="save(${x.id})">🔖 Bookmark</button></article>`).join(""):'<div class="card">No questions found.</div>'}
-function answer(b,i,c){b.parentNode.querySelectorAll(".option").forEach(x=>x.disabled=true);b.classList.add(i===c?"correct":"wrong");if(i!==c)b.parentNode.querySelectorAll(".option")[c].classList.add("correct");b.parentNode.querySelector(".explain").classList.add("show")}
-async function save(id){if(!user)return openAuth("login");let r=await db.from("bookmarks").select("id").eq("user_id",user.id).eq("question_id",id).maybeSingle();if(r.data)await db.from("bookmarks").delete().eq("id",r.data.id);else await db.from("bookmarks").insert({user_id:user.id,question_id:id})}
-async function loadDiscussions(){if(!ready)return;let r=await db.from("discussions").select("title,body,created_at").order("created_at",{ascending:false}).limit(30);$("discussions").innerHTML=r.error?"Could not load discussions.":r.data.map(x=>`<div style="padding:12px 0;border-bottom:1px solid #dfe8ee"><b>${esc(x.title)}</b><div class="small">${"Student"}</div><p>${esc(x.body)}</p></div>`).join("")||"<p class='small'>No discussions yet.</p>"}
-$("postBtn").onclick=()=>{if(!user)return openAuth("login");let t=prompt("Discussion title");if(!t)return;let b=prompt("Write your post");if(b)db.from("discussions").insert({user_id:user.id,title:t,body:b}).then(loadDiscussions)}
-$("add").onclick=async()=>{if(!admin)return alert("Admin only");let options=[$("a").value,$("b").value,$("c").value,$("d").value];let r=await db.from("questions").insert({subject:$("subject").value,topic:$("subject").value,difficulty:"Medium",question:$("question").value,options,correct_index:+$("correct").value,explanation:$("explanation").value,published:true});if(r.error)alert(r.error.message);else{alert("Published");loadQuestions()}}
-$("search").oninput=loadQuestions;session();
-</script></body></html>
+(function(){
+  const SUPABASE_URL="https://egrbgayjmjplfwjwfesq.supabase.co";
+  const SUPABASE_KEY="sb_publishable_GLt4N1ChNKdPC68EI8NApQ_oYP0s8on";
+  let client=null, authMode="signup", currentUser=null;
+
+  const el=id=>document.getElementById(id);
+  const modal=el("authModal");
+
+  function showAuth(mode){
+    authMode=mode;
+    el("authTitle").textContent=mode==="signup"?"Create account":"Login";
+    el("submitAuth").textContent=mode==="signup"?"Sign up":"Login";
+    el("switchAuth").textContent=mode==="signup"?"Already have an account? Login":"Need an account? Sign up";
+    el("authMsg").textContent="";
+    el("password").value="";
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden","false");
+    setTimeout(()=>el("email").focus(),50);
+  }
+  function closeAuth(){modal.classList.add("hidden");modal.setAttribute("aria-hidden","true")}
+
+  // These handlers are attached immediately after the DOM exists.
+  el("signupBtn").addEventListener("click",()=>showAuth("signup"));
+  el("loginBtn").addEventListener("click",()=>showAuth("login"));
+  el("closeBtn").addEventListener("click",closeAuth);
+  el("switchAuth").addEventListener("click",e=>{e.preventDefault();showAuth(authMode==="signup"?"login":"signup")});
+
+  if(window.supabase && typeof window.supabase.createClient==="function"){
+    client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  }else{
+    el("authMsg").textContent="Supabase could not load. Please refresh the page.";
+  }
+
+  el("submitAuth").addEventListener("click",async()=>{
+    const email=el("email").value.trim(), password=el("password").value;
+    if(!client){el("authMsg").textContent="Supabase is not connected. Refresh the page.";return}
+    if(!email || !password){el("authMsg").textContent="Please enter your email and password.";return}
+    if(authMode==="signup" && password.length<6){el("authMsg").textContent="Password must be at least 6 characters.";return}
+    el("submitAuth").disabled=true; el("authMsg").textContent="Please wait...";
+    try{
+      const result=authMode==="signup"
+        ? await client.auth.signUp({email,password})
+        : await client.auth.signInWithPassword({email,password});
+      if(result.error) throw result.error;
+      if(authMode==="signup" && !result.data.session){
+        el("authMsg").style.color="#18794e";
+        el("authMsg").textContent="Account created. Check your email to confirm your account, then log in.";
+      }else{
+        closeAuth(); await refreshUser();
+      }
+    }catch(err){
+      el("authMsg").style.color="#c0392b";
+      el("authMsg").textContent=err.message||"Authentication failed.";
+    }finally{el("submitAuth").disabled=false}
+  });
+
+  el("logoutBtn").addEventListener("click",async()=>{if(client)await client.auth.signOut();await refreshUser()});
+
+  async function refreshUser(){
+    if(!client)return;
+    const {data}=await client.auth.getSession();
+    currentUser=data.session?.user||null;
+    el("userText").textContent=currentUser?currentUser.email:"";
+    el("loginBtn").classList.toggle("hidden",!!currentUser);
+    el("signupBtn").classList.toggle("hidden",!!currentUser);
+    el("logoutBtn").classList.toggle("hidden",!currentUser);
+  }
+
+  async function loadQuestions(){
+    if(!client){el("questions").innerHTML='<div class="card">Supabase is not connected. Refresh the page.</div>';return}
+    const {data,error}=await client.from("questions").select("*").eq("published",true).order("created_at",{ascending:false}).limit(100);
+    if(error){el("questions").innerHTML='<div class="card">Could not load questions: '+escapeHtml(error.message)+'</div>';return}
+    el("questions").innerHTML=data?.length?data.map(q=>'<div class="card"><b>'+escapeHtml(q.subject||"Medical")+'</b><h3>'+escapeHtml(q.question)+'</h3></div>').join(""):'<div class="card">No questions found yet.</div>';
+  }
+  function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+  el("search").addEventListener("input",loadQuestions);
+
+  el("postBtn").addEventListener("click",()=>{if(!currentUser)showAuth("login");else alert("Discussion form will be added next.")});
+
+  (async function start(){
+    await refreshUser();
+    await loadQuestions();
+  })();
+})();
+</script>
+</body>
+</html>
