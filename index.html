@@ -169,6 +169,48 @@ footer b{color:#fff}
  .qtext{font-size:15.5px}
  .auth-area{margin-left:0}
 }
+/* ---------- smooth transitions & micro-interactions ---------- */
+#practiceView:not(.hidden),#quizView:not(.hidden),#cbtView:not(.hidden){animation:viewIn .5s cubic-bezier(.22,.9,.32,1) both}
+@keyframes viewIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.btn{transition:transform .25s cubic-bezier(.34,1.5,.5,1),box-shadow .28s,filter .2s}
+.btn:hover{transform:translateY(-2px)}
+.primary:hover{box-shadow:0 12px 28px #0fa3856e}
+.secondary:hover{box-shadow:0 9px 20px #0d2e4618}
+.chip{transition:all .24s cubic-bezier(.34,1.35,.5,1)}
+.chip:hover{transform:translateY(-2px)}
+.qcard{transition:transform .32s cubic-bezier(.22,.9,.32,1),box-shadow .32s}
+.opt,.cbt-opt{transition:all .22s cubic-bezier(.3,.8,.4,1)}
+.tab{position:relative}
+.tab::after{content:"";position:absolute;left:50%;bottom:1px;width:0;height:2.5px;border-radius:3px;background:var(--teal2);transform:translateX(-50%);transition:width .32s cubic-bezier(.22,.9,.3,1)}
+.tab:hover::after{width:55%}
+.stat{transition:transform .25s cubic-bezier(.34,1.4,.5,1),box-shadow .25s}
+.stat:hover{transform:translateY(-3px);box-shadow:0 10px 22px #0d2e4614}
+.pill{transition:transform .25s cubic-bezier(.34,1.4,.5,1)}
+.pill:hover{transform:translateY(-3px) scale(1.04)}
+
+/* ---------- social buttons ---------- */
+.socialwrap{text-align:center;max-width:640px;margin:0 auto}
+.socialwrap h3{margin:0 0 6px;font-size:21px;color:#fff;font-family:'Sora',sans-serif}
+.socialwrap .lead{margin:0 0 18px;color:#9dc4c0;font-size:14.5px}
+.socialbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:0 0 20px}
+.sbtn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:999px;font-weight:800;font-size:14.5px;text-decoration:none;transition:transform .28s cubic-bezier(.34,1.5,.5,1),box-shadow .3s;white-space:nowrap}
+.sbtn:hover{transform:translateY(-4px) scale(1.04)}
+.sbtn:active{transform:scale(.96)}
+.sbtn .sic{font-size:19px;display:inline-block;transition:transform .4s cubic-bezier(.34,1.6,.5,1)}
+.sbtn:hover .sic{transform:rotate(-12deg) scale(1.2)}
+.sbtn.email{background:#fff;color:#0d2e46;border:2px solid #cfe0e2;box-shadow:0 6px 16px #0003}
+.sbtn.email:hover{box-shadow:0 14px 32px #0004;border-color:#12a889}
+.sbtn.insta{color:#fff;border:0;background:linear-gradient(120deg,#f58529,#dd2a7b,#8134af,#515bd4);background-size:300% 300%;animation:instaShift 7s ease infinite;box-shadow:0 8px 24px #dd2a7b4d}
+.sbtn.insta:hover{box-shadow:0 16px 38px #dd2a7b66}
+@keyframes instaShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.credit{margin:6px 0 0;color:#9dc4c0;font-size:13px}
+.credit b{color:#fff}
+
+/* ---------- back to top ---------- */
+.totop{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:0;background:linear-gradient(135deg,#0d2e46,#0f8a74);color:#fff;font-size:20px;font-weight:800;cursor:pointer;z-index:900;opacity:0;pointer-events:none;transform:translateY(16px) scale(.9);transition:all .38s cubic-bezier(.34,1.4,.5,1);box-shadow:0 10px 26px #0d2e4659}
+.totop.show{opacity:1;pointer-events:auto;transform:none}
+.totop:hover{transform:translateY(-4px) scale(1.07)}
+
 /* ---------- CBT exam ---------- */
 .cbt-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .cbt-qtag{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-weight:700}
@@ -212,43 +254,7 @@ footer b{color:#fff}
  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
 }
 
-/* ---------- PYQs viewer ---------- */
-.pyqs-hero{background:linear-gradient(135deg,#0d2e46,#0f8a74);color:#fff;border-radius:18px;padding:22px;margin-bottom:14px}
-.pyqs-hero h2{margin:0 0 5px;font-size:25px}
-.pyqs-hero p{margin:0;color:#d7efe9;font-size:14.5px}
-.pyqs-tools{display:grid;grid-template-columns:minmax(220px,1fr) auto auto;gap:10px;align-items:center;margin:14px 0}
-.pyqs-search{width:100%;padding:12px 14px;border:1.5px solid #dce9ea;border-radius:11px;font:inherit;outline:none}
-.pyqs-search:focus{border-color:var(--teal);box-shadow:0 0 0 4px #28d5b033}
-.pyqs-select{padding:11px 12px;border:1.5px solid #dce9ea;border-radius:11px;background:#fff;color:var(--ink);font:inherit;font-weight:700}
-.pyqs-layout{display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:14px;align-items:start}
-.pyqs-list{max-height:690px;overflow:auto;padding:8px}
-.pyq-item{display:flex;gap:10px;align-items:center;width:100%;text-align:left;border:1px solid #e2edee;background:#fbfefd;color:var(--ink);border-radius:11px;padding:10px 11px;margin:5px 0;cursor:pointer;transition:.18s}
-.pyq-item:hover{border-color:var(--teal);background:#f0faf7;transform:translateX(2px)}
-.pyq-item.on{border-color:var(--teal);background:#e7f8f2;box-shadow:0 4px 12px #0fa3851c}
-.pyq-num{flex:0 0 32px;height:32px;border-radius:9px;background:#e7f1f2;display:grid;place-items:center;font-size:12px;font-weight:800;color:#0f6a58}
-.pyq-item.on .pyq-num{background:var(--teal);color:#fff}
-.pyq-title{font-size:13px;font-weight:700;line-height:1.35}
-.pyq-page{margin-left:auto;font-size:11px;color:#6b8792;font-weight:800;white-space:nowrap}
-.pyqs-listhead{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:4px 3px 8px}
-.pyqs-count{font-size:13px;color:#5b7a88;font-weight:700}
-.pyqs-viewer{overflow:hidden;padding:12px}
-.pyqs-viewerbar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.pyqs-current{font-weight:800;font-size:14px}
-.pyqs-open{white-space:nowrap}
-.pyqs-frame{width:100%;height:690px;border:1px solid #dbe8e9;border-radius:12px;background:#eef3f4}
-.pyqs-note{margin-top:10px;background:#f5faf9;border:1px solid #dcecea;border-radius:10px;padding:10px 12px;color:#5b7a88;font-size:12.5px}
-.pyqs-empty{padding:30px 10px;text-align:center;color:#6b8792}
-@media (max-width:820px){
-  .pyqs-tools{grid-template-columns:1fr 1fr}
-  .pyqs-tools .pyqs-search{grid-column:1/-1}
-  .pyqs-layout{grid-template-columns:1fr}
-  .pyqs-list{max-height:360px}
-  .pyqs-frame{height:620px}
-}
-@media (max-width:520px){
-  .pyqs-tools{grid-template-columns:1fr}
-  .pyqs-frame{height:560px}
-}
+
 </style>
 </head>
 <body>
@@ -260,7 +266,6 @@ footer b{color:#fff}
 <button type="button" id="tabPractice" class="tab on">📚 Practice</button>
 <button type="button" id="tabQuiz" class="tab">⚡ Quiz</button>
 <button type="button" id="tabCbt" class="tab">🖥 CBT</button>
-<button type="button" id="tabPyqs" class="tab">📖 PYQs</button>
 </nav>
 <div class="auth-area">
 <button type="button" id="loginBtn" class="btn secondary">Login</button>
@@ -304,65 +309,19 @@ footer b{color:#fff}
 </section>
 
 
-<!-- ============ PYQs VIEW ============ -->
-<section id="pyqsView" class="hidden">
-  <div class="pyqs-hero">
-    <h2>📖 Previous Year Question Papers</h2>
-    <p>Browse the 285 chapters in your uploaded PYQ book and open any chapter directly at its page.</p>
-  </div>
-
-  <div class="card">
-    <div class="pyqs-tools">
-      <input id="pyqsSearch" class="pyqs-search" type="search" placeholder="🔍 Search chapter, subject, exam or year…">
-      <select id="pyqsSubject" class="pyqs-select" aria-label="Filter by subject">
-        <option value="All">All subjects</option>
-      </select>
-      <select id="pyqsExam" class="pyqs-select" aria-label="Filter by exam">
-        <option value="All">All exams</option>
-        <option value="AIIMS">AIIMS</option>
-        <option value="NEET">NEET</option>
-        <option value="INI-CET">INI-CET</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="pyqs-layout">
-    <div class="card pyqs-list">
-      <div class="pyqs-listhead">
-        <span class="setuplabel">Chapters</span>
-        <span id="pyqsCount" class="pyqs-count"></span>
-      </div>
-      <div id="pyqsChapters"></div>
-    </div>
-
-    <div class="card pyqs-viewer" id="pyqsViewerTop">
-      <div class="pyqs-viewerbar">
-        <div id="pyqsCurrent" class="pyqs-current">Select a chapter to begin</div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <button type="button" id="pyqPrev" class="btn secondary" style="padding:8px 13px">← Prev</button>
-          <button type="button" id="pyqNext" class="btn secondary" style="padding:8px 13px">Next →</button>
-          <a id="pyqsOpen" class="btn primary pyqs-open" href="#" target="_blank" rel="noopener">Open PDF ↗</a>
-        </div>
-      </div>
-      <iframe id="pyqsFrame" class="pyqs-frame" title="MedStudentHub PYQ PDF viewer" loading="lazy"></iframe>
-      <div class="pyqs-note">The PDF stays in Supabase Storage; it is not stored in your GitHub repository. On the first visit, your browser may take a moment to load the selected page.</div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ CBT VIEW ============ -->
 <section id="cbtView" class="hidden">
 <div id="cbtSetup" class="card">
 <h2 style="margin:2px 0 4px">🖥 CBT Exam Mode</h2>
-<p class="sec-sub" style="margin:0 0 12px">Practice like the real FMGE / NEET-PG computer-based test. Pick your mode: <b>🖥 Exam</b> — answers stay hidden until you submit, just like the real CBT; or <b>📖 Regular</b> — the correct answer and the book&#39;s own solution appear <b>immediately after you click</b>. Both modes give you the question palette, countdown timer and mark-for-review. <b>4,191 actual PYQs</b> (AIIMS · NEET · INI-CET, 2017–2024) with original answer keys. Image-based questions live in the 📖 PYQs tab.</p>
+<p class="sec-sub" style="margin:0 0 12px">Practice like the real FMGE / NEET-PG computer-based test. Pick your mode: <b>🖥 Exam</b> — answers stay hidden until you submit, just like the real CBT; or <b>📖 Regular</b> — the correct answer and the book&#39;s own solution appear <b>immediately after you click</b>. Both modes give you the question palette, countdown timer and mark-for-review. <b>4,191 actual PYQs</b> (AIIMS · NEET · INI-CET, 2017–2024) with original answer keys. Image-based questions are excluded.</p>
 <div id="cbtLoadState" class="notice ok hidden">⏳ Loading the PYQ question bank (~5 MB — first time only, then cached by your browser)…</div>
 <div id="cbtLoadError" class="notice err hidden">Could not load the question bank. Make sure <b>pyqbank.js</b> is uploaded to your repository next to index.html, then <button type="button" class="btn secondary" id="cbtRetry" style="padding:4px 10px">retry</button></div>
 <div class="setupgrid">
 <div><div class="setuplabel">Mode</div><div class="chiprow" id="cbtMode"></div></div>
 <div><div class="setuplabel">Exam</div><div class="chiprow" id="cbtExam"></div></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div><div class="setuplabel">Subject</div><select id="cbtSubject" class="pyqs-select" style="width:100%"></select></div>
-<div><div class="setuplabel">Year</div><select id="cbtYear" class="pyqs-select" style="width:100%"></select></div>
+<div><div class="setuplabel">Subject</div><select id="cbtSubject" class="app-select" style="width:100%"></select></div>
+<div><div class="setuplabel">Year</div><select id="cbtYear" class="app-select" style="width:100%"></select></div>
 </div>
 <div><div class="setuplabel">Questions</div><div class="chiprow" id="cbtCount"></div></div>
 <div><div class="setuplabel">Time per question</div><div class="chiprow" id="cbtTime"></div></div>
@@ -403,8 +362,16 @@ footer b{color:#fff}
 </main>
 
 <footer>
-<b>MedStudentHub</b> — made with 💚 for medical students<br>
-Questions are high-yield, PYQ-style practice material modelled on FMGE &amp; NEET-PG patterns. Always cross-check with standard textbooks.
+<div class="socialwrap">
+<h3>💬 Got suggestions?</h3>
+<p class="lead">Ideas for new features, spotted a mistake in a question, or just want to say hi? Drop a message — I read everything.</p>
+<div class="socialbtns">
+<a class="sbtn email" href="/cdn-cgi/l/email-protection#bbcfdad3c8deded5ccdad5d2898989fbdcd6dad2d795d8d4d684c8ced9d1ded8cf86f6dedfe8cfcedfded5cff3ced99e898be8cedcdcdec8cfd2d4d5"><span class="sic">📧</span> <span class="__cf_email__" data-cfemail="ee9a8f869d8b8b80998f8087dcdcdcae89838f8782c08d8183">[email&#160;protected]</span></a>
+<a class="sbtn insta" href="https://www.instagram.com/tahseen_nazir" target="_blank" rel="noopener"><span class="sic">📸</span> @tahseen_nazir</a>
+</div>
+<p class="credit"><b>MedStudentHub</b> — built with 💚 by <b>Tahseen Nazir</b> for medical students<br>
+Questions are PYQ-style practice material modelled on FMGE &amp; NEET-PG patterns. Always cross-check with standard textbooks.</p>
+</div>
 </footer>
 
 <!-- ============ AUTH MODAL ============ -->
@@ -422,10 +389,11 @@ Questions are high-yield, PYQ-style practice material modelled on FMGE &amp; NEE
 <p class="switchlink"><a href="#" id="switchAuth">Already have an account? Login</a></p>
 </div></div>
 
+<button type="button" id="toTop" class="totop" aria-label="Back to top">↑</button>
 <div id="confetti" aria-hidden="true"></div>
 <div id="toast" role="status"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ============ QUESTION BANK ============
 High-yield FMGE / NEET-PG PYQ-style questions.
@@ -657,11 +625,8 @@ window.QUESTIONS=[
     view=v;
     el("practiceView").classList.toggle("hidden",v!=="practice");
     el("quizView").classList.toggle("hidden",v!=="quiz");
-    el("pyqsView").classList.toggle("hidden",v!=="pyqs");
     el("tabPractice").classList.toggle("on",v==="practice");
     el("tabQuiz").classList.toggle("on",v==="quiz");
-    el("tabPyqs").classList.toggle("on",v==="pyqs");
-    if(v==="pyqs") initPyqsViewer();
     el("cbtView").classList.toggle("hidden",v!=="cbt");
     el("tabCbt").classList.toggle("on",v==="cbt");
     if(v==="cbt") ensureCbtBank();
@@ -669,73 +634,6 @@ window.QUESTIONS=[
   el("tabPractice").addEventListener("click",()=>setView("practice"));
   el("tabQuiz").addEventListener("click",()=>{setView("quiz");el("quizSetup").scrollIntoView({behavior:"smooth",block:"start"})});
   el("tabCbt").addEventListener("click",()=>{setView("cbt");el("cbtView").scrollIntoView({behavior:"smooth",block:"start"})});
-el("tabPyqs").addEventListener("click",()=>{setView("pyqs");el("pyqsView").scrollIntoView({behavior:"smooth",block:"start"})});
-
-  /* ---------- PYQ book viewer ---------- */
-  const PYQS_PDF_URL="https://egrbgayjmjplfwjwfesq.supabase.co/storage/v1/object/public/pyqs/Pyqs_ed8_compressed%202.pdf";
-  const PYQS_CHAPTERS=[{"n":1,"title":"Anatomy AIIMS 2017","page":16,"subject":"Anatomy","exam":"AIIMS","year":2017},{"n":2,"title":"Anatomy AIIMS 2018","page":45,"subject":"Anatomy","exam":"AIIMS","year":2018},{"n":3,"title":"Anatomy AIIMS 2019 (May & Nov)","page":67,"subject":"Anatomy","exam":"AIIMS","year":2019},{"n":4,"title":"Anatomy AIIMS 2020 (May and Nov INI-CET)","page":95,"subject":"Anatomy","exam":"AIIMS","year":2020},{"n":5,"title":"Anatomy NEET 2018","page":126,"subject":"Anatomy","exam":"NEET","year":2018},{"n":6,"title":"Anatomy NEET 2019","page":139,"subject":"Anatomy","exam":"NEET","year":2019},{"n":7,"title":"Anatomy NEET 2020","page":156,"subject":"Anatomy","exam":"NEET","year":2020},{"n":8,"title":"Anatomy INI-CET 2021","page":175,"subject":"Anatomy","exam":"INI-CET","year":2021},{"n":9,"title":"Anatomy NEET 2021","page":218,"subject":"Anatomy","exam":"NEET","year":2021},{"n":10,"title":"Anatomy INI-CET 2022","page":233,"subject":"Anatomy","exam":"INI-CET","year":2022},{"n":11,"title":"Anatomy NEET 2022","page":298,"subject":"Anatomy","exam":"NEET","year":2022},{"n":12,"title":"Anatomy NEET 2023","page":311,"subject":"Anatomy","exam":"NEET","year":2023},{"n":13,"title":"Anatomy INI-CET 2023","page":323,"subject":"Anatomy","exam":"INI-CET","year":2023},{"n":14,"title":"Anatomy INI-CET 2024","page":366,"subject":"Anatomy","exam":"INI-CET","year":2024},{"n":15,"title":"Anatomy NEET 2024","page":401,"subject":"Anatomy","exam":"NEET","year":2024},{"n":16,"title":"Physiology AIIMS 2017","page":417,"subject":"Physiology","exam":"AIIMS","year":2017},{"n":17,"title":"Physiology AIIMS 2018","page":439,"subject":"Physiology","exam":"AIIMS","year":2018},{"n":18,"title":"Physiology AIIMS 2019 (May & Nov)","page":459,"subject":"Physiology","exam":"AIIMS","year":2019},{"n":19,"title":"Physiology AIIMS 2020 (May and Nov INI-CET)","page":471,"subject":"Physiology","exam":"AIIMS","year":2020},{"n":20,"title":"Physiology NEET 2018","page":493,"subject":"Physiology","exam":"NEET","year":2018},{"n":21,"title":"Physiology NEET 2019","page":503,"subject":"Physiology","exam":"NEET","year":2019},{"n":22,"title":"Physiology NEET 2020","page":517,"subject":"Physiology","exam":"NEET","year":2020},{"n":23,"title":"Physiology INI-CET 2021","page":529,"subject":"Physiology","exam":"INI-CET","year":2021},{"n":24,"title":"Physiology NEET 2021","page":554,"subject":"Physiology","exam":"NEET","year":2021},{"n":25,"title":"Physiology INI-CET 2022","page":559,"subject":"Physiology","exam":"INI-CET","year":2022},{"n":26,"title":"Physiology NEET 2022","page":592,"subject":"Physiology","exam":"NEET","year":2022},{"n":27,"title":"Physiology NEET 2023","page":602,"subject":"Physiology","exam":"NEET","year":2023},{"n":28,"title":"Physiology INI-CET 2023","page":615,"subject":"Physiology","exam":"INI-CET","year":2023},{"n":29,"title":"Physiology INI-CET 2024","page":642,"subject":"Physiology","exam":"INI-CET","year":2024},{"n":30,"title":"Physiology NEET 2024","page":678,"subject":"Physiology","exam":"NEET","year":2024},{"n":31,"title":"Biochemistry AIIMS 2017","page":692,"subject":"Biochemistry","exam":"AIIMS","year":2017},{"n":32,"title":"Biochemistry AIIMS 2018","page":707,"subject":"Biochemistry","exam":"AIIMS","year":2018},{"n":33,"title":"Biochemistry AIIMS 2019 (May & Nov)","page":723,"subject":"Biochemistry","exam":"AIIMS","year":2019},{"n":34,"title":"Biochemistry AIIMS 2020 (May and Nov INI-CET)","page":739,"subject":"Biochemistry","exam":"AIIMS","year":2020},{"n":35,"title":"Biochemistry NEET 2018","page":758,"subject":"Biochemistry","exam":"NEET","year":2018},{"n":36,"title":"Biochemistry NEET 2019","page":770,"subject":"Biochemistry","exam":"NEET","year":2019},{"n":37,"title":"Biochemistry NEET 2020","page":778,"subject":"Biochemistry","exam":"NEET","year":2020},{"n":38,"title":"Biochemistry INI-CET 2021","page":791,"subject":"Biochemistry","exam":"INI-CET","year":2021},{"n":39,"title":"Biochemistry NEET 2021","page":822,"subject":"Biochemistry","exam":"NEET","year":2021},{"n":40,"title":"Biochemistry INI-CET 2022","page":845,"subject":"Biochemistry","exam":"INI-CET","year":2022},{"n":41,"title":"Biochemistry NEET 2022","page":872,"subject":"Biochemistry","exam":"NEET","year":2022},{"n":42,"title":"Biochemistry NEET 2023","page":885,"subject":"Biochemistry","exam":"NEET","year":2023},{"n":43,"title":"Biochemistry INI-CET 2023","page":903,"subject":"Biochemistry","exam":"INI-CET","year":2023},{"n":44,"title":"Biochemistry INI-CET 2024","page":924,"subject":"Biochemistry","exam":"INI-CET","year":2024},{"n":45,"title":"Biochemistry NEET 2024","page":946,"subject":"Biochemistry","exam":"NEET","year":2024},{"n":46,"title":"Pharmacology AIIMS 2017","page":977,"subject":"Pharmacology","exam":"AIIMS","year":2017},{"n":47,"title":"Pharmacology AIIMS 2018","page":999,"subject":"Pharmacology","exam":"AIIMS","year":2018},{"n":48,"title":"Pharmacology AIIMS 2019 (May & Nov)","page":1025,"subject":"Pharmacology","exam":"AIIMS","year":2019},{"n":49,"title":"Pharmacology AIIMS 2020 (May and Nov INI-CET)","page":1038,"subject":"Pharmacology","exam":"AIIMS","year":2020},{"n":50,"title":"Pharmacology NEET 2018","page":1066,"subject":"Pharmacology","exam":"NEET","year":2018},{"n":51,"title":"Pharmacology NEET 2019","page":1080,"subject":"Pharmacology","exam":"NEET","year":2019},{"n":52,"title":"Pharmacology NEET 2020","page":1095,"subject":"Pharmacology","exam":"NEET","year":2020},{"n":53,"title":"Pharmacology INI-CET 2021","page":1110,"subject":"Pharmacology","exam":"INI-CET","year":2021},{"n":54,"title":"Pharmacology NEET 2021","page":1145,"subject":"Pharmacology","exam":"NEET","year":2021},{"n":55,"title":"Pharmacology INI-CET 2022","page":1161,"subject":"Pharmacology","exam":"INI-CET","year":2022},{"n":56,"title":"Pharmacology NEET 2022","page":1217,"subject":"Pharmacology","exam":"NEET","year":2022},{"n":57,"title":"Pharmacology NEET 2023","page":1235,"subject":"Pharmacology","exam":"NEET","year":2023},{"n":58,"title":"Pharmacology INI-CET 2023","page":1247,"subject":"Pharmacology","exam":"INI-CET","year":2023},{"n":59,"title":"Pharmacology INI-CET 2024","page":1287,"subject":"Pharmacology","exam":"INI-CET","year":2024},{"n":60,"title":"Pharmacology NEET 2024","page":1310,"subject":"Pharmacology","exam":"NEET","year":2024},{"n":61,"title":"Microbiology AIIMS 2017","page":1334,"subject":"Microbiology","exam":"AIIMS","year":2017},{"n":62,"title":"Microbiology AIIMS 2018","page":1360,"subject":"Microbiology","exam":"AIIMS","year":2018},{"n":63,"title":"Microbiology AIIMS 2019 (May & Nov)","page":1385,"subject":"Microbiology","exam":"AIIMS","year":2019},{"n":64,"title":"Microbiology AIIMS 2020 (May and Nov INI-CET)","page":1402,"subject":"Microbiology","exam":"AIIMS","year":2020},{"n":65,"title":"Microbiology NEET 2018","page":1443,"subject":"Microbiology","exam":"NEET","year":2018},{"n":66,"title":"Microbiology NEET 2019","page":1456,"subject":"Microbiology","exam":"NEET","year":2019},{"n":67,"title":"Microbiology NEET 2020","page":1479,"subject":"Microbiology","exam":"NEET","year":2020},{"n":68,"title":"Microbiology INI-CET 2021","page":1499,"subject":"Microbiology","exam":"INI-CET","year":2021},{"n":69,"title":"Microbiology NEET 2021","page":1548,"subject":"Microbiology","exam":"NEET","year":2021},{"n":70,"title":"Microbiology INI-CET 2022","page":1570,"subject":"Microbiology","exam":"INI-CET","year":2022},{"n":71,"title":"Microbiology NEET 2022","page":1629,"subject":"Microbiology","exam":"NEET","year":2022},{"n":72,"title":"Microbiology NEET 2023","page":1649,"subject":"Microbiology","exam":"NEET","year":2023},{"n":73,"title":"Microbiology INI-CET 2023","page":1671,"subject":"Microbiology","exam":"INI-CET","year":2023},{"n":74,"title":"Microbiology INI-CET 2024","page":1718,"subject":"Microbiology","exam":"INI-CET","year":2024},{"n":75,"title":"Microbiology NEET 2024","page":1768,"subject":"Microbiology","exam":"NEET","year":2024},{"n":76,"title":"Pathology AIIMS 2017","page":1807,"subject":"Pathology","exam":"AIIMS","year":2017},{"n":77,"title":"Pathology AIIMS 2018","page":1844,"subject":"Pathology","exam":"AIIMS","year":2018},{"n":78,"title":"Pathology AIIMS 2019 (May & Nov)","page":1865,"subject":"Pathology","exam":"AIIMS","year":2019},{"n":79,"title":"Pathology AIIMS 2020 (May and Nov INI-CET)","page":1896,"subject":"Pathology","exam":"AIIMS","year":2020},{"n":80,"title":"Pathology NEET 2018","page":1931,"subject":"Pathology","exam":"NEET","year":2018},{"n":81,"title":"Pathology NEET 2019","page":1947,"subject":"Pathology","exam":"NEET","year":2019},{"n":82,"title":"Pathology NEET 2020","page":1966,"subject":"Pathology","exam":"NEET","year":2020},{"n":83,"title":"Pathology INI-CET 2021","page":1996,"subject":"Pathology","exam":"INI-CET","year":2021},{"n":84,"title":"Pathology NEET 2021","page":2060,"subject":"Pathology","exam":"NEET","year":2021},{"n":85,"title":"Pathology INI-CET 2022","page":2086,"subject":"Pathology","exam":"INI-CET","year":2022},{"n":86,"title":"Pathology NEET 2022","page":2177,"subject":"Pathology","exam":"NEET","year":2022},{"n":87,"title":"Pathology NEET 2023","page":2196,"subject":"Pathology","exam":"NEET","year":2023},{"n":88,"title":"Pathology INI-CET 2023","page":2218,"subject":"Pathology","exam":"INI-CET","year":2023},{"n":89,"title":"Pathology INI-CET 2024","page":2268,"subject":"Pathology","exam":"INI-CET","year":2024},{"n":90,"title":"Pathology NEET 2024","page":2303,"subject":"Pathology","exam":"NEET","year":2024},{"n":91,"title":"Community Medicine AIIMS 2017","page":2365,"subject":"Community Medicine","exam":"AIIMS","year":2017},{"n":92,"title":"Community Medicine AIIMS 2018","page":2383,"subject":"Community Medicine","exam":"AIIMS","year":2018},{"n":93,"title":"Community Medicine AIIMS 2019 (May & Nov)","page":2406,"subject":"Community Medicine","exam":"AIIMS","year":2019},{"n":94,"title":"Community Medicine AIIMS 2020 (May and Nov INI-...","page":2428,"subject":"Community Medicine","exam":"AIIMS","year":2020},{"n":95,"title":"Community Medicine NEET 2018","page":2442,"subject":"Community Medicine","exam":"NEET","year":2018},{"n":96,"title":"Community Medicine NEET 2019","page":2456,"subject":"Community Medicine","exam":"NEET","year":2019},{"n":97,"title":"Community Medicine NEET 2020","page":2472,"subject":"Community Medicine","exam":"NEET","year":2020},{"n":98,"title":"Community Medicine INI-CET 2021","page":2487,"subject":"Community Medicine","exam":"INI-CET","year":2021},{"n":99,"title":"Community Medicine NEET 2021","page":2514,"subject":"Community Medicine","exam":"NEET","year":2021},{"n":100,"title":"Community Medicine INI-CET 2022","page":2533,"subject":"Community Medicine","exam":"INI-CET","year":2022},{"n":101,"title":"Community medicine NEET 2022","page":2565,"subject":"Community medicine","exam":"NEET","year":2022},{"n":102,"title":"Community Medicine NEET 2023","page":2578,"subject":"Community Medicine","exam":"NEET","year":2023},{"n":103,"title":"Community Medicine INI-CET 2023","page":2594,"subject":"Community Medicine","exam":"INI-CET","year":2023},{"n":104,"title":"Community Medicine INI-CET 2024","page":2619,"subject":"Community Medicine","exam":"INI-CET","year":2024},{"n":105,"title":"Community Medicine NEET 2024","page":2633,"subject":"Community Medicine","exam":"NEET","year":2024},{"n":106,"title":"Forensic Medicine AIIMS 2017","page":2665,"subject":"Forensic Medicine","exam":"AIIMS","year":2017},{"n":107,"title":"Forensic Medicine AIIMS 2018","page":2678,"subject":"Forensic Medicine","exam":"AIIMS","year":2018},{"n":108,"title":"Forensic Medicine AIIMS 2019 (May & Nov)","page":2693,"subject":"Forensic Medicine","exam":"AIIMS","year":2019},{"n":109,"title":"Forensic Medicine AIIMS 2020 (May and Nov INI-CET)","page":2698,"subject":"Forensic Medicine","exam":"AIIMS","year":2020},{"n":110,"title":"Forensic Medicine NEET 2018","page":2717,"subject":"Forensic Medicine","exam":"NEET","year":2018},{"n":111,"title":"Forensic Medicine NEET 2019","page":2726,"subject":"Forensic Medicine","exam":"NEET","year":2019},{"n":112,"title":"Forensic Medicine NEET 2020","page":2735,"subject":"Forensic Medicine","exam":"NEET","year":2020},{"n":113,"title":"Forensic Medicine INI-CET 2021","page":2742,"subject":"Forensic Medicine","exam":"INI-CET","year":2021},{"n":114,"title":"Forensic Medicine NEET 2021","page":2770,"subject":"Forensic Medicine","exam":"NEET","year":2021},{"n":115,"title":"Forensic Medicine INI-CET 2022","page":2787,"subject":"Forensic Medicine","exam":"INI-CET","year":2022},{"n":116,"title":"Forensic Medicine NEET 2022","page":2824,"subject":"Forensic Medicine","exam":"NEET","year":2022},{"n":117,"title":"Forensic Medicine NEET 2023","page":2835,"subject":"Forensic Medicine","exam":"NEET","year":2023},{"n":118,"title":"Forensic Medicine INI-CET 2023","page":2843,"subject":"Forensic Medicine","exam":"INI-CET","year":2023},{"n":119,"title":"Forensic Medicine INI-CET 2024","page":2872,"subject":"Forensic Medicine","exam":"INI-CET","year":2024},{"n":120,"title":"Forensic Medicine NEET 2024","page":2885,"subject":"Forensic Medicine","exam":"NEET","year":2024},{"n":121,"title":"Ophthalmology AIIMS 2017","page":2904,"subject":"Ophthalmology","exam":"AIIMS","year":2017},{"n":122,"title":"Ophthalmology AIIMS 2018","page":2931,"subject":"Ophthalmology","exam":"AIIMS","year":2018},{"n":123,"title":"Ophthalmology AIIMS 2019 (May & Nov)","page":2968,"subject":"Ophthalmology","exam":"AIIMS","year":2019},{"n":124,"title":"Ophthalmology AIIMS 2020 (May and Nov INI-CET)","page":2987,"subject":"Ophthalmology","exam":"AIIMS","year":2020},{"n":125,"title":"Ophthalmology NEET 2018","page":2997,"subject":"Ophthalmology","exam":"NEET","year":2018},{"n":126,"title":"Ophthalmology NEET 2019","page":3015,"subject":"Ophthalmology","exam":"NEET","year":2019},{"n":127,"title":"Ophthalmology NEET 2020","page":3030,"subject":"Ophthalmology","exam":"NEET","year":2020},{"n":128,"title":"Ophthalmology INI-CET 2021","page":3039,"subject":"Ophthalmology","exam":"INI-CET","year":2021},{"n":129,"title":"Ophthalmology NEET 2021","page":3055,"subject":"Ophthalmology","exam":"NEET","year":2021},{"n":130,"title":"Ophthalmology INICET 2022","page":3072,"subject":"Ophthalmology","exam":"INI-CET","year":2022},{"n":131,"title":"Ophthalmology NEET 2022","page":3096,"subject":"Ophthalmology","exam":"NEET","year":2022},{"n":132,"title":"Ophthalmology NEET 2023","page":3111,"subject":"Ophthalmology","exam":"NEET","year":2023},{"n":133,"title":"Ophthalmology INI-CET 2023","page":3122,"subject":"Ophthalmology","exam":"INI-CET","year":2023},{"n":134,"title":"Ophthalmology INI-CET 2024","page":3142,"subject":"Ophthalmology","exam":"INI-CET","year":2024},{"n":135,"title":"Ophthalmology NEET 2024","page":3164,"subject":"Ophthalmology","exam":"NEET","year":2024},{"n":136,"title":"ENT AIIMS 2017","page":3188,"subject":"ENT","exam":"AIIMS","year":2017},{"n":137,"title":"ENT AIIMS 2018","page":3202,"subject":"ENT","exam":"AIIMS","year":2018},{"n":138,"title":"ENT AIIMS 2019 (May & Nov)","page":3212,"subject":"ENT","exam":"AIIMS","year":2019},{"n":139,"title":"ENT AIIMS 2020 (May and Nov INI-CET)","page":3218,"subject":"ENT","exam":"AIIMS","year":2020},{"n":140,"title":"ENT NEET 2018","page":3240,"subject":"ENT","exam":"NEET","year":2018},{"n":141,"title":"ENT NEET 2019","page":3247,"subject":"ENT","exam":"NEET","year":2019},{"n":142,"title":"ENT NEET 2020","page":3256,"subject":"ENT","exam":"NEET","year":2020},{"n":143,"title":"ENT INICET 2021","page":3266,"subject":"ENT","exam":"INI-CET","year":2021},{"n":144,"title":"ENT NEET 2021","page":3286,"subject":"ENT","exam":"NEET","year":2021},{"n":145,"title":"ENT INICET 2022","page":3297,"subject":"ENT","exam":"INI-CET","year":2022},{"n":146,"title":"ENT NEET 2022","page":3318,"subject":"ENT","exam":"NEET","year":2022},{"n":147,"title":"ENT NEET 2023","page":3334,"subject":"ENT","exam":"NEET","year":2023},{"n":148,"title":"ENT INICET 2023","page":3344,"subject":"ENT","exam":"INI-CET","year":2023},{"n":149,"title":"ENT INI-CET 2024","page":3365,"subject":"ENT","exam":"INI-CET","year":2024},{"n":150,"title":"ENT NEET 2024","page":3384,"subject":"ENT","exam":"NEET","year":2024},{"n":151,"title":"Anesthesia AIIMS 2017","page":3407,"subject":"Anesthesia","exam":"AIIMS","year":2017},{"n":152,"title":"Anesthesia AIIMS 2018","page":3412,"subject":"Anesthesia","exam":"AIIMS","year":2018},{"n":153,"title":"Anesthesia AIIMS 2019 (May & Nov)","page":3415,"subject":"Anesthesia","exam":"AIIMS","year":2019},{"n":154,"title":"Anesthesia AIIMS 2020 (May and Nov INI-CET)","page":3421,"subject":"Anesthesia","exam":"AIIMS","year":2020},{"n":155,"title":"Anesthesia NEET 2018","page":3430,"subject":"Anesthesia","exam":"NEET","year":2018},{"n":156,"title":"Anesthesia NEET 2019","page":3436,"subject":"Anesthesia","exam":"NEET","year":2019},{"n":157,"title":"Anesthesia NEET 2020","page":3441,"subject":"Anesthesia","exam":"NEET","year":2020},{"n":158,"title":"Anesthesia INI-CET 2021","page":3445,"subject":"Anesthesia","exam":"INI-CET","year":2021},{"n":159,"title":"Anesthesia NEET 2021","page":3464,"subject":"Anesthesia","exam":"NEET","year":2021},{"n":160,"title":"Anesthesia INI-CET 2022","page":3473,"subject":"Anesthesia","exam":"INI-CET","year":2022},{"n":161,"title":"Anesthesia NEET 2022","page":3477,"subject":"Anesthesia","exam":"NEET","year":2022},{"n":162,"title":"Anesthesia NEET 2023","page":3482,"subject":"Anesthesia","exam":"NEET","year":2023},{"n":163,"title":"Anesthesia INI-CET 2023","page":3487,"subject":"Anesthesia","exam":"INI-CET","year":2023},{"n":164,"title":"Anesthesia INI-CET 2024","page":3492,"subject":"Anesthesia","exam":"INI-CET","year":2024},{"n":165,"title":"Anesthesia NEET 2024","page":3505,"subject":"Anesthesia","exam":"NEET","year":2024},{"n":166,"title":"Dermatology AIIMS 2017","page":3524,"subject":"Dermatology","exam":"AIIMS","year":2017},{"n":167,"title":"Dermatology AIIMS 2018","page":3539,"subject":"Dermatology","exam":"AIIMS","year":2018},{"n":168,"title":"Dermatology AIIMS 2019 (May & Nov)","page":3550,"subject":"Dermatology","exam":"AIIMS","year":2019},{"n":169,"title":"Dermatology AIIMS 2020 (May and Nov INI-CET)","page":3563,"subject":"Dermatology","exam":"AIIMS","year":2020},{"n":170,"title":"Dermatology NEET 2018","page":3577,"subject":"Dermatology","exam":"NEET","year":2018},{"n":171,"title":"Dermatology NEET 2019","page":3587,"subject":"Dermatology","exam":"NEET","year":2019},{"n":172,"title":"Dermatology NEET 2020","page":3602,"subject":"Dermatology","exam":"NEET","year":2020},{"n":173,"title":"Dermatology INI-CET 2021","page":3611,"subject":"Dermatology","exam":"INI-CET","year":2021},{"n":174,"title":"Dermatology NEET 2021","page":3639,"subject":"Dermatology","exam":"NEET","year":2021},{"n":175,"title":"Dermatology INI-CET 2022","page":3653,"subject":"Dermatology","exam":"INI-CET","year":2022},{"n":176,"title":"Dermatology NEET 2022","page":3678,"subject":"Dermatology","exam":"NEET","year":2022},{"n":177,"title":"Dermatology NEET 2023","page":3695,"subject":"Dermatology","exam":"NEET","year":2023},{"n":178,"title":"Dermatology INI-CET 2023","page":3701,"subject":"Dermatology","exam":"INI-CET","year":2023},{"n":179,"title":"Dermatology INI-CET 2024","page":3724,"subject":"Dermatology","exam":"INI-CET","year":2024},{"n":180,"title":"Dermatology NEET 2024","page":3734,"subject":"Dermatology","exam":"NEET","year":2024},{"n":181,"title":"Psychiatry AIIMS 2017","page":3756,"subject":"Psychiatry","exam":"AIIMS","year":2017},{"n":182,"title":"Psychiatry AIIMS 2018","page":3766,"subject":"Psychiatry","exam":"AIIMS","year":2018},{"n":183,"title":"Psychiatry AIIMS 2019 (May & Nov)","page":3773,"subject":"Psychiatry","exam":"AIIMS","year":2019},{"n":184,"title":"Psychiatry AIIMS 2020 (May and Nov INI-CET)","page":3780,"subject":"Psychiatry","exam":"AIIMS","year":2020},{"n":185,"title":"Psychiatry NEET 2018","page":3792,"subject":"Psychiatry","exam":"NEET","year":2018},{"n":186,"title":"Psychiatry NEET 2019","page":3799,"subject":"Psychiatry","exam":"NEET","year":2019},{"n":187,"title":"Psychiatry NEET 2020","page":3805,"subject":"Psychiatry","exam":"NEET","year":2020},{"n":188,"title":"Psychiatry INI-CET 2021","page":3812,"subject":"Psychiatry","exam":"INI-CET","year":2021},{"n":189,"title":"Psychiatry NEET 2021","page":3821,"subject":"Psychiatry","exam":"NEET","year":2021},{"n":190,"title":"Psychiatry INI-CET 2022","page":3827,"subject":"Psychiatry","exam":"INI-CET","year":2022},{"n":191,"title":"Psychiatry NEET 2022","page":3839,"subject":"Psychiatry","exam":"NEET","year":2022},{"n":192,"title":"Psychiatry NEET 2023","page":3842,"subject":"Psychiatry","exam":"NEET","year":2023},{"n":193,"title":"Psychiatry INI-CET 2023","page":3848,"subject":"Psychiatry","exam":"INI-CET","year":2023},{"n":194,"title":"Psychiatry INI-CET 2024","page":3855,"subject":"Psychiatry","exam":"INI-CET","year":2024},{"n":195,"title":"Psychiatry NEET 2024","page":3860,"subject":"Psychiatry","exam":"NEET","year":2024},{"n":196,"title":"Radiology AIIMS 2017","page":3870,"subject":"Radiology","exam":"AIIMS","year":2017},{"n":197,"title":"Radiology AIIMS 2018","page":3880,"subject":"Radiology","exam":"AIIMS","year":2018},{"n":198,"title":"Radiology AIIMS 2019 (May & Nov)","page":3892,"subject":"Radiology","exam":"AIIMS","year":2019},{"n":199,"title":"Radiology AIIMS 2020 (May and Nov INI-CET)","page":3897,"subject":"Radiology","exam":"AIIMS","year":2020},{"n":200,"title":"Radiology NEET 2018","page":3905,"subject":"Radiology","exam":"NEET","year":2018},{"n":201,"title":"Radiology NEET 2019","page":3923,"subject":"Radiology","exam":"NEET","year":2019},{"n":202,"title":"Radiology NEET 2020","page":3935,"subject":"Radiology","exam":"NEET","year":2020},{"n":203,"title":"Radiology INI-CET 2021","page":3945,"subject":"Radiology","exam":"INI-CET","year":2021},{"n":204,"title":"Radiology NEET 2021","page":3967,"subject":"Radiology","exam":"NEET","year":2021},{"n":205,"title":"Radiology INI-CET 2022","page":3975,"subject":"Radiology","exam":"INI-CET","year":2022},{"n":206,"title":"Radiology NEET 2022","page":4007,"subject":"Radiology","exam":"NEET","year":2022},{"n":207,"title":"Radiology NEET 2023","page":4012,"subject":"Radiology","exam":"NEET","year":2023},{"n":208,"title":"Radiology INI-CET 2023","page":4020,"subject":"Radiology","exam":"INI-CET","year":2023},{"n":209,"title":"Radiology INI-CET 2024","page":4034,"subject":"Radiology","exam":"INI-CET","year":2024},{"n":210,"title":"Radiology NEET 2024","page":4044,"subject":"Radiology","exam":"NEET","year":2024},{"n":211,"title":"Medicine AIIMS 2017","page":4071,"subject":"Medicine","exam":"AIIMS","year":2017},{"n":212,"title":"Medicine AIIMS 2018","page":4114,"subject":"Medicine","exam":"AIIMS","year":2018},{"n":213,"title":"Medicine AIIMS 2019 (May & Nov)","page":4150,"subject":"Medicine","exam":"AIIMS","year":2019},{"n":214,"title":"Medicine AIIMS 2020 (May and Nov INI-CET)","page":4173,"subject":"Medicine","exam":"AIIMS","year":2020},{"n":215,"title":"Medicine NEET 2018","page":4206,"subject":"Medicine","exam":"NEET","year":2018},{"n":216,"title":"Medicine NEET 2019","page":4234,"subject":"Medicine","exam":"NEET","year":2019},{"n":217,"title":"Medicine NEET 2020","page":4261,"subject":"Medicine","exam":"NEET","year":2020},{"n":218,"title":"Medicine INI-CET 2021","page":4286,"subject":"Medicine","exam":"INI-CET","year":2021},{"n":219,"title":"Medicine NEET 2021","page":4318,"subject":"Medicine","exam":"NEET","year":2021},{"n":220,"title":"Medicine INI-CET 2022","page":4352,"subject":"Medicine","exam":"INI-CET","year":2022},{"n":221,"title":"Medicine NEET 2022","page":4422,"subject":"Medicine","exam":"NEET","year":2022},{"n":222,"title":"Medicine NEET 2023","page":4457,"subject":"Medicine","exam":"NEET","year":2023},{"n":223,"title":"Medicine INI-CET 2023","page":4488,"subject":"Medicine","exam":"INI-CET","year":2023},{"n":224,"title":"Medicine INI-CET 2024","page":4532,"subject":"Medicine","exam":"INI-CET","year":2024},{"n":225,"title":"Medicine NEET 2024","page":4576,"subject":"Medicine","exam":"NEET","year":2024},{"n":226,"title":"Surgery AIIMS 2017","page":4639,"subject":"Surgery","exam":"AIIMS","year":2017},{"n":227,"title":"Surgery AIIMS 2018","page":4674,"subject":"Surgery","exam":"AIIMS","year":2018},{"n":228,"title":"Surgery AIIMS 2019 (May & Nov)","page":4696,"subject":"Surgery","exam":"AIIMS","year":2019},{"n":229,"title":"Surgery AIIMS 2020 (May and Nov INI-CET)","page":4730,"subject":"Surgery","exam":"AIIMS","year":2020},{"n":230,"title":"Surgery NEET 2018","page":4779,"subject":"Surgery","exam":"NEET","year":2018},{"n":231,"title":"Surgery NEET 2019","page":4810,"subject":"Surgery","exam":"NEET","year":2019},{"n":232,"title":"Surgery NEET 2020","page":4835,"subject":"Surgery","exam":"NEET","year":2020},{"n":233,"title":"Surgery INI-CET 2021","page":4865,"subject":"Surgery","exam":"INI-CET","year":2021},{"n":234,"title":"Surgery NEET 2021","page":4907,"subject":"Surgery","exam":"NEET","year":2021},{"n":235,"title":"Surgery INI-CET 2022","page":4937,"subject":"Surgery","exam":"INI-CET","year":2022},{"n":236,"title":"Surgery NEET 2022","page":4994,"subject":"Surgery","exam":"NEET","year":2022},{"n":237,"title":"Surgery NEET 2023","page":5034,"subject":"Surgery","exam":"NEET","year":2023},{"n":238,"title":"Surgery INI-CET 2023","page":5073,"subject":"Surgery","exam":"INI-CET","year":2023},{"n":239,"title":"Surgery INI-CET 2024","page":5111,"subject":"Surgery","exam":"INI-CET","year":2024},{"n":240,"title":"Surgery NEET 2024","page":5146,"subject":"Surgery","exam":"NEET","year":2024},{"n":241,"title":"Orthopedics AIIMS 2017","page":5215,"subject":"Orthopedics","exam":"AIIMS","year":2017},{"n":242,"title":"Orthopedics AIIMS 2018","page":5240,"subject":"Orthopedics","exam":"AIIMS","year":2018},{"n":243,"title":"Orthopedics AIIMS 2019 (May & Nov)","page":5256,"subject":"Orthopedics","exam":"AIIMS","year":2019},{"n":244,"title":"Orthopedics AIIMS 2020 (May and Nov INI-CET)","page":5277,"subject":"Orthopedics","exam":"AIIMS","year":2020},{"n":245,"title":"Orthopedics NEET 2018","page":5297,"subject":"Orthopedics","exam":"NEET","year":2018},{"n":246,"title":"Orthopedics NEET 2019","page":5309,"subject":"Orthopedics","exam":"NEET","year":2019},{"n":247,"title":"Orthopedics NEET 2020","page":5329,"subject":"Orthopedics","exam":"NEET","year":2020},{"n":248,"title":"Orthopedics INI-CET 2021","page":5341,"subject":"Orthopedics","exam":"INI-CET","year":2021},{"n":249,"title":"Orthopedics NEET 2021","page":5365,"subject":"Orthopedics","exam":"NEET","year":2021},{"n":250,"title":"Orthopedics INI-CET 2022","page":5380,"subject":"Orthopedics","exam":"INI-CET","year":2022},{"n":251,"title":"Orthopedics NEET 2022","page":5410,"subject":"Orthopedics","exam":"NEET","year":2022},{"n":252,"title":"Orthopedics NEET 2023","page":5427,"subject":"Orthopedics","exam":"NEET","year":2023},{"n":253,"title":"Orthopedics INI-CET 2023","page":5441,"subject":"Orthopedics","exam":"INI-CET","year":2023},{"n":254,"title":"Orthopedics INI-CET 2024","page":5457,"subject":"Orthopedics","exam":"INI-CET","year":2024},{"n":255,"title":"Orthopedics NEET 2024","page":5469,"subject":"Orthopedics","exam":"NEET","year":2024},{"n":256,"title":"Paediatrics AIIMS 2017","page":5498,"subject":"Paediatrics","exam":"AIIMS","year":2017},{"n":257,"title":"Paediatrics AIIMS 2018","page":5515,"subject":"Paediatrics","exam":"AIIMS","year":2018},{"n":258,"title":"Paediatrics AIIMS 2019 (May & Nov)","page":5535,"subject":"Paediatrics","exam":"AIIMS","year":2019},{"n":259,"title":"Paediatrics AIIMS 2020 (May and Nov INI-CET)","page":5553,"subject":"Paediatrics","exam":"AIIMS","year":2020},{"n":260,"title":"Paediatrics NEET 2018","page":5567,"subject":"Paediatrics","exam":"NEET","year":2018},{"n":261,"title":"Paediatrics NEET 2019","page":5583,"subject":"Paediatrics","exam":"NEET","year":2019},{"n":262,"title":"Paediatrics NEET 2020","page":5602,"subject":"Paediatrics","exam":"NEET","year":2020},{"n":263,"title":"Paediatrics INI-CET 2021","page":5613,"subject":"Paediatrics","exam":"INI-CET","year":2021},{"n":264,"title":"Paediatrics NEET 2021","page":5629,"subject":"Paediatrics","exam":"NEET","year":2021},{"n":265,"title":"Paediatrics INI-CET 2022","page":5645,"subject":"Paediatrics","exam":"INI-CET","year":2022},{"n":266,"title":"Paediatrics NEET 2022","page":5672,"subject":"Paediatrics","exam":"NEET","year":2022},{"n":267,"title":"Paediatrics NEET 2023","page":5700,"subject":"Paediatrics","exam":"NEET","year":2023},{"n":268,"title":"Paediatrics INI-CET 2023","page":5714,"subject":"Paediatrics","exam":"INI-CET","year":2023},{"n":269,"title":"Paediatrics INI-CET 2024","page":5735,"subject":"Paediatrics","exam":"INI-CET","year":2024},{"n":270,"title":"Paediatrics NEET 2024","page":5760,"subject":"Paediatrics","exam":"NEET","year":2024},{"n":271,"title":"Obstetrics and Gynecology AIIMS 2017","page":5776,"subject":"Obstetrics and Gynecology","exam":"AIIMS","year":2017},{"n":272,"title":"Obstetrics and Gynecology AIIMS 2018","page":5814,"subject":"Obstetrics and Gynecology","exam":"AIIMS","year":2018},{"n":273,"title":"Obstetrics and Gynecology AIIMS 2019 (May & Nov)","page":5852,"subject":"Obstetrics and Gynecology","exam":"AIIMS","year":2019},{"n":274,"title":"Obstetrics and Gynecology AIIMS 2020 (May and N...","page":5875,"subject":"Obstetrics and Gynecology","exam":"AIIMS","year":2020},{"n":275,"title":"Obstetrics and Gynecology NEET 2018","page":5900,"subject":"Obstetrics and Gynecology","exam":"NEET","year":2018},{"n":276,"title":"Obstetrics and Gynecology NEET 2019","page":5927,"subject":"Obstetrics and Gynecology","exam":"NEET","year":2019},{"n":277,"title":"Obstetrics and Gynecology NEET 2020","page":5952,"subject":"Obstetrics and Gynecology","exam":"NEET","year":2020},{"n":278,"title":"Obstetrics and Gynecology INICET 2021","page":5983,"subject":"Obstetrics and Gynecology","exam":"INI-CET","year":2021},{"n":279,"title":"Obstetrics & Gynecology NEET 2021","page":6047,"subject":"Obstetrics & Gynecology","exam":"NEET","year":2021},{"n":280,"title":"Obstetrics and Gynecology INICET 2022","page":6073,"subject":"Obstetrics and Gynecology","exam":"INI-CET","year":2022},{"n":281,"title":"Obstetrics and Gynecology NEET 2022","page":6133,"subject":"Obstetrics and Gynecology","exam":"NEET","year":2022},{"n":282,"title":"Obstetrics and Gynecology NEET 2023","page":6166,"subject":"Obstetrics and Gynecology","exam":"NEET","year":2023},{"n":283,"title":"Obstetrics and Gynecology INI-CET 2023","page":6191,"subject":"Obstetrics and Gynecology","exam":"INI-CET","year":2023},{"n":284,"title":"Obstetrics and Gynecology INI-CET 2024","page":6225,"subject":"Obstetrics and Gynecology","exam":"INI-CET","year":2024},{"n":285,"title":"Obstetrics and Gynecology NEET 2024","page":6262,"subject":"Obstetrics and Gynecology","exam":"NEET","year":2024}];
-  let pyqsReady=false,pyqsSelected=0;
-
-  function initPyqsViewer(){
-    if(pyqsReady)return;
-    pyqsReady=true;
-
-    const subjects=[...new Set(PYQS_CHAPTERS.map(c=>c.subject))].sort((a,b)=>a.localeCompare(b));
-    el("pyqsSubject").innerHTML='<option value="All">All subjects</option>'+subjects.map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join("");
-
-    el("pyqsSearch").addEventListener("input",renderPyqsChapters);
-    el("pyqsSubject").addEventListener("change",renderPyqsChapters);
-    el("pyqsExam").addEventListener("change",renderPyqsChapters);
-
-    el("pyqsOpen").href=PYQS_PDF_URL;
-    renderPyqsChapters();
-
-    if(!pyqsSelected) selectPyq(1,false);
-  }
-
-  function renderPyqsChapters(){
-    const term=el("pyqsSearch").value.trim().toLowerCase();
-    const subject=el("pyqsSubject").value;
-    const exam=el("pyqsExam").value;
-
-    const words=term?term.split(/\s+/).filter(Boolean):[];
-    const list=PYQS_CHAPTERS.filter(c=>{
-      const hay=(c.title+" "+c.subject+" "+c.exam+" "+c.year).toLowerCase();
-      return (!words.length||words.every(w=>hay.includes(w))) &&
-             (subject==="All"||c.subject===subject) &&
-             (exam==="All"||c.exam===exam);
-    });
-
-    el("pyqsCount").textContent=list.length+" of "+PYQS_CHAPTERS.length;
-    el("pyqsChapters").innerHTML=list.length
-      ? list.map(c=>'<button type="button" class="pyq-item '+(c.n===pyqsSelected?"on":"")+'" data-pyq="'+c.n+'">'+
-          '<span class="pyq-num">'+c.n+'</span>'+
-          '<span class="pyq-title">'+esc(c.title)+'</span>'+
-          '<span class="pyq-page">p. '+c.page+'</span>'+
-        '</button>').join("")
-      : '<div class="pyqs-empty">No chapters match your filters.</div>';
-  }
-
-  el("pyqPrev").addEventListener("click",()=>{if(pyqsSelected>1)selectPyq(pyqsSelected-1,true)});
-  el("pyqNext").addEventListener("click",()=>{if(pyqsSelected<PYQS_CHAPTERS.length)selectPyq(pyqsSelected+1,true)});
-
-  el("pyqsChapters").addEventListener("click",e=>{
-    const b=e.target.closest("[data-pyq]");
-    if(!b)return;
-    selectPyq(Number(b.dataset.pyq),true);
-  });
-
-  function selectPyq(n,scroll){
-    const c=PYQS_CHAPTERS.find(x=>x.n===n);
-    if(!c)return;
-    pyqsSelected=n;
-    const src=PYQS_PDF_URL+"#page="+c.page;
-    el("pyqsFrame").src=src;
-    el("pyqsOpen").href=src;
-    el("pyqsCurrent").textContent="Chapter "+c.n+" — "+c.title+" (PDF page "+c.page+")";
-    renderPyqsChapters();
-    if(scroll)el("pyqsViewerTop")?.scrollIntoView({behavior:"smooth",block:"start"});
-  }
 
   /* ---------- quiz setup ---------- */
   function renderSetup(){
@@ -1129,13 +1027,27 @@ el("cbtResult").addEventListener("click",e=>{
     }catch(e){}
   }
 
+  /* ---------- back-to-top + hero count-up ---------- */
+  const toTopBtn=el("toTop");
+  window.addEventListener("scroll",function(){toTopBtn.classList.toggle("show",window.scrollY>500)},{passive:true});
+  toTopBtn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+  function animateNumber(node,target){
+    const t0=performance.now(),dur=1000;
+    (function step(t){
+      const p=Math.min((t-t0)/dur,1);
+      node.textContent=Math.round(target*(1-Math.pow(1-p,3)));
+      if(p<1)requestAnimationFrame(step);
+    })(t0);
+  }
+
   /* ---------- boot ---------- */
   (async function start(){
-    updateHero();renderFilterBar();renderSetup();applyFilters();updateStatsBar();
+    updateHero();
+    animateNumber(el("hsQ"),bank.length);animateNumber(el("hsS"),subjects().length);renderFilterBar();renderSetup();applyFilters();updateStatsBar();
     await refreshUser();
     loadFromDB();
   })();
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a380a04c4a359858',t:'MTc4ODg5ODUzNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a380cb552d727c15',t:'MTc4ODkwMDI5OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
