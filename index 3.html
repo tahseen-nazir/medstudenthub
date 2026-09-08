@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="MedStudentHub - FMGE &amp; NEET-PG PYQ-style MCQ practice and quizzes with explanations, bookmarks and instant scoring.">
+<title>MedStudentHub — FMGE &amp; NEET-PG MCQ Practice</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box}
+:root{--bg:#070d17;--bg2:#0b1424;--card:#0e1930;--card2:#12203c;--line:#1c2c49;--line2:#2a3d63;
+--ink:#e9eff9;--mut:#93a7c4;--mut2:#5f7396;--teal:#2dd4bf;--cyan:#22d3ee;--vio:#818cf8;
+--grad:linear-gradient(120deg,#2dd4bf,#38bdf8 55%,#818cf8);--red:#fb7185;--green:#34d399;--amber:#fbbf24;
+--rad:14px;--rad-lg:20px}
+*::-webkit-scrollbar{width:9px;height:9px}
+*::-webkit-scrollbar-thumb{background:#22345a;border-radius:99px}
+*::-webkit-scrollbar-track{background:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);line-height:1.55;
+background:radial-gradient(1000px 520px at 85% -12%,#0c2d4040 0%,transparent 60%),
+radial-gradient(760px 460px at -12% 24%,#1e1b4b3d 0%,transparent 55%),
+radial-gradient(600px 400px at 50% 110%,#0d3b3340 0%,transparent 60%),var(--bg)}
+h1,h2,h3,.logo{font-family:'Sora','Inter',system-ui,sans-serif;letter-spacing:-.01em}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+button{font-family:inherit}
+a{color:var(--teal)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
+
+/* ---------- buttons (uniform system) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border:0;
+border-radius:var(--rad);font-weight:800;font-size:14.5px;cursor:pointer;line-height:1.2;
+transition:transform .28s cubic-bezier(.34,1.5,.5,1),box-shadow .3s,filter .2s,border-color .2s}
+.btn:active{transform:scale(.96)}
+.btn:hover{transform:translateY(-2px)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none!important}
+.btn-lg{min-height:52px;padding:14px 28px;font-size:16px;border-radius:15px}
+#qStart,#cbtStart{min-height:52px;padding:14px 30px;font-size:16px;border-radius:15px}
+.primary{background:var(--grad);color:#03121d;box-shadow:0 8px 26px #2dd4bf33}
+.primary:hover{box-shadow:0 14px 36px #2dd4bf55;filter:brightness(1.06)}
+.secondary{background:rgba(255,255,255,.055);color:var(--ink);border:1.5px solid var(--line2)}
+.secondary:hover{border-color:var(--teal);background:rgba(45,212,191,.08)}
+
+/* ---------- header ---------- */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(7,13,23,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;gap:14px;padding:12px 18px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.logo{font-size:21px;font-weight:800;white-space:nowrap}.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.tabs{display:flex;gap:4px;background:rgba(255,255,255,.06);border:1px solid var(--line);padding:4px;border-radius:999px}
+.tab{position:relative;border:0;background:transparent;color:var(--mut);min-height:38px;padding:8px 16px;border-radius:999px;font-weight:800;font-size:14px;cursor:pointer;transition:color .25s,background .25s;white-space:nowrap}
+.tab::after{content:"";position:absolute;left:50%;bottom:3px;width:0;height:2.5px;border-radius:3px;background:var(--grad);transform:translateX(-50%);transition:width .32s cubic-bezier(.22,.9,.3,1)}
+.tab:hover{color:var(--ink)}.tab:hover::after{width:55%}
+.tab.on{background:var(--grad);color:#03121d}.tab.on::after{width:0}
+.auth-area{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.auth-area .btn{min-height:40px;padding:8px 14px;font-size:13.5px}
+#userText{font-size:13.5px;color:var(--mut);font-weight:700}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:74px 0 46px}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.33;pointer-events:none}
+.b1{width:380px;height:380px;background:#0e7490;top:-140px;right:-80px;animation:floaty 10s ease-in-out infinite}
+.b2{width:300px;height:300px;background:#4338ca;bottom:-140px;left:-90px;animation:floaty 12s ease-in-out infinite reverse}
+.b3{width:170px;height:170px;background:#7c3aed;opacity:.22;top:38%;left:58%;animation:floaty 9s ease-in-out 1s infinite}
+@keyframes floaty{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-26px) scale(1.07)}}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font-size:clamp(31px,5.2vw,50px);margin:0 0 12px;line-height:1.12;font-weight:800}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 100%;animation:gradText 6s linear infinite}
+@keyframes gradText{to{background-position:200% 100%}}
+.hero p.sub{font-size:17px;color:var(--mut);max-width:660px;margin:0}
+.search{margin-top:22px;width:min(560px,100%);min-height:50px;padding:13px 18px;border:1.5px solid var(--line2);border-radius:14px;font-size:15.5px;background:rgba(255,255,255,.05);color:var(--ink);outline:none;transition:border-color .25s,box-shadow .25s}
+.search::placeholder{color:var(--mut2)}
+.search:focus{border-color:var(--teal);box-shadow:0 0 0 4px #2dd4bf26}
+.heroactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.heroaction{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);border:1.5px solid var(--line2);color:var(--ink);min-height:48px;padding:11px 18px;border-radius:14px;font-weight:800;font-size:14.5px;cursor:pointer;transition:all .26s cubic-bezier(.34,1.4,.5,1)}
+.heroaction b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.heroaction:hover{transform:translateY(-3px);border-color:var(--teal);box-shadow:0 12px 30px #0a2239}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.pill{background:rgba(255,255,255,.055);border:1px solid var(--line);padding:9px 16px;border-radius:999px;font-size:13.5px;font-weight:700;color:var(--mut);backdrop-filter:blur(4px);transition:transform .25s cubic-bezier(.34,1.4,.5,1)}
+.pill b{color:var(--ink)}
+.pill:hover{transform:translateY(-3px)}
+.ecg{margin-top:24px;width:min(540px,100%);height:52px;display:block}
+.ecg path{fill:none;stroke:url(#ecgGrad);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:1000;animation:ecg 3.6s linear infinite;filter:drop-shadow(0 0 7px #2dd4bf88)}
+@keyframes ecg{0%{stroke-dashoffset:1000}100%{stroke-dashoffset:-1000}}
+
+/* ---------- layout / cards ---------- */
+main{padding:26px 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--rad-lg);padding:22px;box-shadow:0 14px 44px #03060c66}
+.sec-sub{color:var(--mut);font-size:14.5px;margin:0 0 10px}
+.filtrcard{margin-bottom:6px;padding:16px 18px 10px}
+.setupgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.setupgrid>div{min-width:0}
+.setuplabel{font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--mut2);margin:2px 0 0}
+.app-select{width:auto;min-height:44px;padding:11px 12px;border:1.5px solid var(--line2);border-radius:12px;background:var(--bg2);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.app-select:focus{outline:none;border-color:var(--teal)}
+
+/* ---------- chips ---------- */
+.chiprow{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:thin}
+.chip{border:1.5px solid var(--line2);background:rgba(255,255,255,.04);color:var(--mut);min-height:38px;padding:8px 15px;border-radius:999px;font-weight:800;font-size:13.5px;cursor:pointer;white-space:nowrap;transition:all .24s cubic-bezier(.34,1.35,.5,1)}
+.chip:hover{border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
+.chip.on{background:var(--grad);color:#03121d;border-color:transparent;box-shadow:0 6px 18px #2dd4bf3d}
+.chip.mini{min-height:26px;padding:3px 10px;font-size:11px;cursor:default;border-radius:8px;text-transform:uppercase;letter-spacing:.4px;color:var(--mut)}
+.chip.mini:hover{transform:none;color:var(--mut)}
+.chip.mini.ghost{background:transparent;border-color:var(--line);color:var(--mut2)}
+
+/* ---------- stats ---------- */
+.statsbar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 4px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:10px 15px;font-size:13.5px;font-weight:700;color:var(--mut);transition:transform .25s cubic-bezier(.34,1.4,.5,1),border-color .25s}
+.stat b{font-size:16px;color:var(--ink)}
+.stat:hover{transform:translateY(-3px);border-color:var(--teal)}
+
+/* ---------- questions ---------- */
+.qcard{margin:14px 0;animation:fadeUp .5s both;transition:transform .3s cubic-bezier(.22,.9,.32,1),border-color .3s}
+.qcard:hover{transform:translateY(-3px);border-color:var(--line2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.qtop{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.badge{font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:7px;letter-spacing:.5px}
+.b-fmge{background:#f9731633;color:#fdba74}.b-npg{background:#818cf833;color:#a5b4fc}.b-nug{background:#34d39933;color:#6ee7b7}
+.star{background:none;border:0;font-size:24px;cursor:pointer;color:#3b5077;transition:transform .25s,color .25s;line-height:1}
+.star:hover{transform:scale(1.22)}
+.star.on{color:var(--amber);animation:pop .35s}
+.qtext{font-size:16.5px;margin:12px 2px 6px;line-height:1.55;color:var(--ink)}
+.opts{display:flex;flex-direction:column;margin-top:4px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:rgba(255,255,255,.035);border:1.5px solid var(--line);border-radius:13px;min-height:50px;padding:12px 14px;margin:6px 0;cursor:pointer;font-size:15px;transition:all .22s cubic-bezier(.3,.8,.4,1);color:var(--ink)}
+.opt:hover{border-color:var(--teal);background:rgba(45,212,191,.07);transform:translateX(4px)}
+.ol{flex:0 0 26px;height:26px;border-radius:50%;background:rgba(255,255,255,.08);color:var(--teal);font-weight:800;display:grid;place-items:center;font-size:13px;margin-top:1px}
+.qcard.done .opt{pointer-events:none}
+.opt.correct,.cbt-opt.correct{background:#34d3991f!important;border-color:#34d399!important;animation:pop .4s}
+.opt.correct .ol{background:#34d399;color:#04121d}
+.opt.wrong,.cbt-opt.wrong{background:#fb71851f!important;border-color:var(--red)!important;animation:shake .4s}
+.opt.wrong .ol{background:var(--red);color:#280a11}
+@keyframes pop{0%{transform:scale(.97)}55%{transform:scale(1.025)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.explain{background:rgba(45,212,191,.06);border-left:4px solid var(--teal);border-radius:10px;padding:12px 14px;margin-top:10px;line-height:1.6;font-size:14.5px;color:#c7d7e6;animation:fadeUp .4s both}
+.reveal{background:none;border:0;color:var(--teal);font-weight:800;cursor:pointer;margin-top:10px;padding:6px 0;font-size:14px}
+.reveal:hover{text-decoration:underline}
+.empty{text-align:center;padding:40px 20px;color:var(--mut)}
+.empty .big{font-size:44px;margin-bottom:8px}
+
+/* ---------- quiz ---------- */
+.pbar{height:10px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden}
+.pfill{height:100%;width:0;background:var(--grad);border-radius:999px;transition:width .45s ease}
+.qmeta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 10px}
+.qcount{font-weight:800;font-size:14px;color:var(--mut)}
+.timer{font-variant-numeric:tabular-nums;background:rgba(45,212,191,.08);border:1px solid #2dd4bf40;color:var(--teal);font-weight:800;font-size:14px;padding:6px 12px;border-radius:999px}
+.feedback{border-radius:12px;padding:13px 15px;margin-top:12px;font-size:15px;font-weight:700;animation:fadeUp .35s both}
+.feedback.ok{background:#34d3991c;color:#6ee7b7;border:1px solid #34d39955}
+.feedback.no{background:#fb71851c;color:#fda4af;border:1px solid #fb718555}
+.qnext{margin-top:14px;width:100%;padding:14px;font-size:16px;border-radius:13px}
+.result-card{text-align:center;animation:fadeUp .55s both}
+.ringwrap{position:relative;width:158px;height:158px;margin:18px auto 6px}
+.ringwrap svg{transform:rotate(-90deg);width:158px;height:158px}
+.ring-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:11}
+.ring-fg{fill:none;stroke:url(#gradRing);stroke-width:11;stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset 1.3s ease}
+.ringscore{position:absolute;inset:0;display:grid;place-items:center;font-size:34px;font-weight:800;font-family:'Sora',sans-serif}
+.ringscore small{display:block;font-size:12px;font-weight:700;color:var(--mut)}
+.tiermsg{font-size:18px;font-weight:800;margin:10px 0 2px}
+.resultstats{color:var(--mut);font-size:14.5px;margin-bottom:14px}
+.review{margin-top:16px;text-align:left}
+.review h3{margin:4px 0 10px;font-size:16px}
+.revitem{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;background:var(--bg2);animation:fadeUp .4s both}
+.revitem .you{color:#fda4af;font-weight:700}
+.revitem .right{color:#6ee7b7;font-weight:700}
+.revitem summary{cursor:pointer;font-size:13.5px;color:var(--mut)}
+details.revitem{animation:fadeUp .4s both}
+.resultbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+#cbtResult .opt,#quizResult .opt{pointer-events:none;transform:none}
+
+/* ---------- CBT ---------- */
+.cbt-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.cbt-qtag{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-weight:700}
+.cbt-timer{font-variant-numeric:tabular-nums;background:rgba(45,212,191,.08);border:1px solid #2dd4bf40;color:var(--teal);font-weight:800;font-size:15px;padding:7px 14px;border-radius:999px}
+.cbt-timer.low{background:#fb71851f;color:#fda4af;border-color:#fb718555;animation:cbtPulse 1s infinite}
+@keyframes cbtPulse{50%{opacity:.55}}
+.cbt-layout{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:14px;align-items:start}
+.cbt-stem{font-size:16.5px;line-height:1.6;margin:6px 0 14px}
+.cbt-opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);background:rgba(255,255,255,.035);border-radius:13px;min-height:50px;padding:12px 14px;margin:8px 0;cursor:pointer;transition:all .2s;font-size:15px;color:var(--ink)}
+.cbt-opt:hover{border-color:var(--teal);background:rgba(45,212,191,.07)}
+.cbt-opt.sel{border-color:var(--teal);background:rgba(45,212,191,.1);box-shadow:0 3px 14px #2dd4bf2e}
+.cbt-radio{flex:0 0 22px;height:22px;border-radius:50%;border:2px solid #3b5077;margin-top:1px;display:grid;place-items:center;transition:border-color .2s}
+.cbt-opt.sel .cbt-radio{border-color:var(--teal)}
+.cbt-opt.sel .cbt-radio::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--teal)}
+.cbt-opts.done .cbt-opt{pointer-events:none}
+.cbt-opt.correct .cbt-radio{border-color:#34d399}
+.cbt-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+.cbt-palette{position:sticky;top:74px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px}
+.cbt-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-height:330px;overflow:auto;margin:10px 0}
+.cbt-pb{border:1px solid var(--line2);background:rgba(255,255,255,.05);border-radius:8px;height:34px;font-weight:800;font-size:12.5px;cursor:pointer;color:var(--mut);transition:filter .15s;font-family:inherit}
+.cbt-pb:hover{filter:brightness(1.3)}
+.cbt-pb.an{background:#059669;border-color:#059669;color:#fff}
+.cbt-pb.no{background:#e11d48;border-color:#e11d48;color:#fff}
+.cbt-pb.mk{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.cbt-pb.cur{outline:3px solid #2dd4bf66;outline-offset:1px}
+.cbt-legend{font-size:11.5px;color:var(--mut);display:grid;gap:4px}
+.cbt-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.lg-an{background:#059669}.lg-no{background:#e11d48}.lg-mk{background:#7c3aed}.lg-nv{background:rgba(255,255,255,.08);border:1px solid var(--line2)}
+.cbt-sum{font-size:12px;font-weight:700;color:var(--mut);border-top:1px dashed var(--line2);padding-top:8px;margin-top:4px;line-height:1.8}
+.cbt-submitbar{margin-top:10px}
+.cbt-overlay{position:absolute;inset:0;background:rgba(7,13,23,.85);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;border-radius:var(--rad-lg);z-index:5;animation:fadeIn .2s}
+.cbt-overlaybox{background:var(--card);border:1px solid var(--line2);box-shadow:0 22px 60px #000a;border-radius:16px;padding:24px;max-width:380px;text-align:center}
+@media (max-width:820px){.cbt-layout{grid-template-columns:1fr}.cbt-palette{position:static}.cbt-grid{grid-template-columns:repeat(8,1fr);max-height:200px}}
+@media (max-width:520px){.cbt-grid{grid-template-columns:repeat(6,1fr)}}
+
+/* ---------- banner / modal / auth ---------- */
+.banner{background:#fbbf2422;color:#fcd34d;padding:12px 18px;font-size:14.5px;border-bottom:1px solid #fbbf2440}
+.modal{position:fixed;z-index:9999;inset:0;background:rgba(3,7,15,.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px;animation:fadeIn .25s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal.hidden{display:none}
+.modalbox{background:var(--card);border:1px solid var(--line2);width:min(460px,100%);padding:26px;border-radius:18px;animation:zoomIn .32s cubic-bezier(.2,.9,.3,1.15);box-shadow:0 30px 80px #000b}
+@keyframes zoomIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.field{width:100%;min-height:48px;padding:12px;margin:8px 0;border:1.5px solid var(--line2);border-radius:12px;font-size:15px;background:var(--bg2);color:var(--ink);transition:border-color .2s}
+.field:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px #2dd4bf26}
+.notice{padding:12px 14px;border-radius:11px;font-size:14.5px;margin:12px 0 2px;line-height:1.55}
+.notice.ok{background:#34d3991a;color:#6ee7b7;border:1px solid #34d39944}
+.notice.err{background:#fb71851a;color:#fda4af;border:1px solid #fb718544}
+.hidden{display:none!important}
+.switchlink{text-align:center;margin:14px 0 0}
+.switchlink a{color:var(--teal);font-weight:700}
+
+/* ---------- toast / confetti ---------- */
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9998}
+#confetti i{position:absolute;top:-16px;animation:fall linear both}
+@keyframes fall{to{transform:translate(var(--x,0),108vh) rotate(720deg)}}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(90px);background:#101d36;border:1px solid var(--line2);color:var(--ink);padding:12px 22px;border-radius:13px;font-weight:700;font-size:14.5px;z-index:10001;transition:.35s ease;opacity:0;box-shadow:0 14px 40px #000a;max-width:90vw;text-align:center}
+.toast.show{transform:translateX(-50%);opacity:1}
+
+/* ---------- socials ---------- */
+footer{margin-top:46px;background:rgba(255,255,255,.02);border-top:1px solid var(--line);padding:34px 18px;font-size:13.5px;line-height:1.7}
+.socialwrap{text-align:center;max-width:660px;margin:0 auto}
+.socialwrap h3{margin:0 0 6px;font-size:21px;color:var(--ink);font-family:'Sora',sans-serif}
+.socialwrap .lead{margin:0 0 18px;color:var(--mut);font-size:14.5px}
+.socialbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:0 0 12px}
+.sbtn{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:13px 24px;border-radius:999px;font-weight:800;font-size:14.5px;text-decoration:none;cursor:pointer;border:0;font-family:inherit;transition:transform .28s cubic-bezier(.34,1.5,.5,1),box-shadow .3s,border-color .3s;white-space:nowrap}
+.sbtn:hover{transform:translateY(-4px) scale(1.03)}
+.sbtn:active{transform:scale(.96)}
+.sbtn .sic{font-size:19px;display:inline-block;transition:transform .4s cubic-bezier(.34,1.6,.5,1)}
+.sbtn:hover .sic{transform:rotate(-12deg) scale(1.2)}
+.sbtn.email{background:#f3f8fc;color:#0b1524;box-shadow:0 8px 22px #0006}
+.sbtn.email:hover{box-shadow:0 16px 38px #0008}
+.sbtn.insta{color:#fff;background:linear-gradient(120deg,#f58529,#dd2a7b,#8134af,#515bd4);background-size:300% 300%;animation:instaShift 7s ease infinite;box-shadow:0 8px 26px #dd2a7b52}
+.sbtn.insta:hover{box-shadow:0 16px 40px #dd2a7b70}
+@keyframes instaShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.minilink{margin:0 0 18px;color:var(--mut2);font-size:13px}
+.minilink a{color:var(--mut);font-weight:700}
+.minilink a:hover{color:var(--teal)}
+.credit{margin:6px 0 0;color:var(--mut2);font-size:13px}
+.credit b{color:var(--mut)}
+
+/* ---------- back to top ---------- */
+.totop{position:fixed;right:18px;bottom:18px;width:48px;height:48px;border-radius:50%;border:1px solid var(--line2);background:var(--card);color:var(--teal);font-size:20px;font-weight:800;cursor:pointer;z-index:900;opacity:0;pointer-events:none;transform:translateY(16px) scale(.9);transition:all .38s cubic-bezier(.34,1.4,.5,1);box-shadow:0 12px 30px #000a}
+.totop.show{opacity:1;pointer-events:auto;transform:none}
+.totop:hover{transform:translateY(-4px) scale(1.08);border-color:var(--teal)}
+
+/* ---------- WELCOME overlay ---------- */
+#welcome{position:fixed;inset:0;z-index:10000;background:radial-gradient(900px 500px at 80% -10%,#0c2d4059,transparent 60%),radial-gradient(700px 440px at 10% 110%,#1e1b4b59,transparent 55%),var(--bg);overflow-y:auto;opacity:0;visibility:hidden;transform:scale(1.02);transition:opacity .45s ease,transform .45s ease,visibility .45s}
+#welcome.open{opacity:1;visibility:visible;transform:none}
+#welcome.gone{display:none}
+.w-inner{max-width:760px;margin:0 auto;padding:48px 20px 40px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.w-logo{font-family:'Sora',sans-serif;font-size:26px;font-weight:800}
+.w-logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.w-title{font-size:clamp(28px,4.6vw,42px);line-height:1.15;margin:16px 0 10px;font-weight:800}
+.w-sub{color:var(--mut);font-size:16px;max-width:560px;margin:0 auto 24px}
+.w-card{width:100%;background:var(--card);border:1px solid var(--line2);border-radius:18px;padding:20px;text-align:left;box-shadow:0 24px 60px #0009;animation:fadeUp .6s .15s both}
+.w-mcqhead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.w-datechip{font-size:12.5px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.6px}
+.w-qtext{font-size:17px;line-height:1.55;margin:4px 0 12px;font-family:'Sora',sans-serif}
+.w-opts .opt{margin:7px 0}
+.w-opts.done .opt{pointer-events:none}
+.w-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;margin:22px 0 18px}
+.w-tile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:16px;min-height:118px;cursor:pointer;font-family:inherit;color:var(--ink);transition:all .28s cubic-bezier(.34,1.4,.5,1)}
+.w-tile .wt-ic{font-size:26px;line-height:1}
+.w-tile b{font-size:15.5px;font-family:'Sora',sans-serif}
+.w-tile span{font-size:12.5px;color:var(--mut);line-height:1.45}
+.w-tile:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 16px 36px #0a2239}
+.w-tile .wt-go{margin-top:auto;color:var(--teal);font-weight:800;font-size:13px}
+.w-enter{min-width:230px}
+.w-foot{margin:16px 0 0;color:var(--mut2);font-size:12.5px}
+@media (max-width:640px){.w-tiles{grid-template-columns:1fr}.w-tile{min-height:0}.w-tile .wt-go{display:none}.w-inner{padding:32px 16px 32px}}
+
+/* ---------- view transitions & micro-interactions ---------- */
+#practiceView:not(.hidden),#quizView:not(.hidden),#cbtView:not(.hidden){animation:viewIn .5s cubic-bezier(.22,.9,.32,1) both}
+@keyframes viewIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+@media (max-width:720px){
+ .header-inner{padding:10px 12px}
+ .hero{padding:48px 0 36px}
+ .qtext{font-size:15.5px}
+ .auth-area{margin-left:0}
+ .btn{width:auto}
+ .cbt-actions .btn{flex:1 1 auto}
+}
+@media (prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+}</style>
+</head>
+<body>
+<!-- ============ WELCOME OVERLAY ============ -->
+<div id="welcome" role="dialog" aria-modal="true" aria-label="Welcome">
+  <div class="w-inner">
+    <div class="w-logo">MedStudent<span>Hub</span></div>
+    <h1 class="w-title">Your daily dose of <span class="grad-text">medical mastery</span></h1>
+    <p class="w-sub">FMGE &amp; NEET-PG practice — curated MCQs, timed quizzes and <b>4,191 real previous-year questions</b> in exam mode.</p>
+    <div class="w-card">
+      <div class="w-mcqhead">
+        <span class="w-datechip">🗓 MCQ of the day · <span id="wDate"></span></span>
+        <span id="wSubj" class="chip mini"></span>
+      </div>
+      <h3 class="w-qtext" id="wQ"></h3>
+      <div class="w-opts" id="wOpts"></div>
+      <div id="wFeedback" class="notice hidden"></div>
+    </div>
+    <div class="w-tiles">
+      <button type="button" class="w-tile" data-goto="practice"><span class="wt-ic">📚</span><b>Practice</b><span>60 curated high-yield MCQs with explanations</span><span class="wt-go">Start practicing →</span></button>
+      <button type="button" class="w-tile" data-goto="quiz"><span class="wt-ic">⚡</span><b>Quick Quiz</b><span>Timed quizzes with instant scoring and review</span><span class="wt-go">Take a quiz →</span></button>
+      <button type="button" class="w-tile" data-goto="cbt"><span class="wt-ic">🖥</span><b>PYQs · CBT</b><span>4,191 real AIIMS / NEET / INI-CET questions</span><span class="wt-go">Enter exam mode →</span></button>
+    </div>
+    <button type="button" id="wEnter" class="btn btn-lg primary w-enter">Enter site →</button>
+    <p class="w-foot">Free forever · Works offline once loaded · Built by a med student, for med students</p>
+  </div>
+</div>
+
+<div id="connBanner" class="banner hidden">Login is temporarily unavailable (Supabase could not load — often an ad-blocker or a slow connection). MCQs and quizzes still work fine. Refresh to reconnect.</div>
+
+<header class="site-header"><div class="header-inner">
+<div class="logo">MedStudent<span>Hub</span></div>
+<nav class="tabs" aria-label="Main navigation">
+<button type="button" id="tabPractice" class="tab on">📚 Practice</button>
+<button type="button" id="tabQuiz" class="tab">⚡ Quiz</button>
+<button type="button" id="tabCbt" class="tab">🖥 CBT</button>
+</nav>
+<div class="auth-area">
+<button type="button" id="loginBtn" class="btn secondary">Login</button>
+<button type="button" id="signupBtn" class="btn primary">Sign up</button>
+<button type="button" id="logoutBtn" class="btn secondary hidden">Logout</button>
+<span id="userText"></span>
+</div>
+</div></header>
+
+<section class="hero">
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="wrap">
+<h1>Practice. Understand. <span class="grad-text">Ace it.</span></h1>
+<p class="sub">High-yield FMGE &amp; NEET-PG previous-year-style MCQs with crisp explanations, timed quizzes, instant scoring and bookmarks — built for medical students.</p>
+<input id="search" class="search" type="search" placeholder="🔍 Search questions, topics or subjects… (e.g. psammoma, ECG, typhoid)">
+<div class="pills">
+<span class="pill">📊 <b id="hsQ">0</b> questions</span>
+<span class="pill">🧬 <b id="hsS">0</b> subjects</span>
+<span class="pill">🎓 FMGE · NEET-PG</span>
+<span class="pill">🖥 <b>4,191</b> real PYQs — CBT mode</span>
+<span class="pill">✨ PYQ-style &amp; explanations</span>
+</div>
+<div class="heroactions"><button type="button" class="heroaction" data-goto="practice">📚 <b>Practice</b> · 60 MCQs</button><button type="button" class="heroaction" data-goto="quiz">⚡ <b>Quiz</b> · timed</button><button type="button" class="heroaction" data-goto="cbt">🖥 <b>PYQs · CBT</b> · 4,191 questions</button></div>
+<svg class="ecg" viewBox="0 0 540 52" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="ecgGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2dd4bf"/><stop offset="100%" stop-color="#818cf8"/></linearGradient></defs>
+<path d="M0,30 H70 L82,30 88,18 94,42 100,30 H180 L192,30 198,10 206,50 214,30 H300 L312,30 318,20 324,40 330,30 H410 L422,30 428,8 436,52 444,30 H540"/>
+</svg>
+</div>
+</section>
+
+<main class="wrap">
+
+<!-- ============ PRACTICE VIEW ============ -->
+<section id="practiceView">
+<div class="card filtrcard">
+<div class="setuplabel">Exam</div>
+<div class="chiprow" id="rowExam"></div>
+<div class="setuplabel">Subject</div>
+<div class="chiprow" id="rowSubject"></div>
+</div>
+<div class="statsbar" id="statsBar"></div>
+<div id="questions"></div>
+</section>
+
+
+<!-- ============ CBT VIEW ============ -->
+<section id="cbtView" class="hidden">
+<div id="cbtSetup" class="card">
+<h2 style="margin:2px 0 4px">🖥 CBT Exam Mode</h2>
+<p class="sec-sub" style="margin:0 0 12px">Practice like the real FMGE / NEET-PG computer-based test. Pick your mode: <b>🖥 Exam</b> — answers stay hidden until you submit, just like the real CBT; or <b>📖 Regular</b> — the correct answer and the book&#39;s own solution appear <b>immediately after you click</b>. Both modes give you the question palette, countdown timer and mark-for-review. <b>4,191 actual PYQs</b> (AIIMS · NEET · INI-CET, 2017–2024) with original answer keys. Image-based questions are excluded.</p>
+<div id="cbtLoadState" class="notice ok hidden">⏳ Loading the PYQ question bank (~5 MB — first time only, then cached by your browser)…</div>
+<div id="cbtLoadError" class="notice err hidden">Could not load the question bank. Make sure <b>pyqbank.js</b> is uploaded to your repository next to index.html, then <button type="button" class="btn secondary" id="cbtRetry" style="padding:4px 10px">retry</button></div>
+<div class="setupgrid">
+<div><div class="setuplabel">Mode</div><div class="chiprow" id="cbtMode"></div></div>
+<div><div class="setuplabel">Exam</div><div class="chiprow" id="cbtExam"></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div><div class="setuplabel">Subject</div><select id="cbtSubject" class="app-select" style="width:100%"></select></div>
+<div><div class="setuplabel">Year</div><select id="cbtYear" class="app-select" style="width:100%"></select></div>
+</div>
+<div><div class="setuplabel">Questions</div><div class="chiprow" id="cbtCount"></div></div>
+<div><div class="setuplabel">Time per question</div><div class="chiprow" id="cbtTime"></div></div>
+</div>
+<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px">
+<button type="button" id="cbtStart" class="btn primary" style="padding:13px 30px;font-size:16px;border-radius:13px">🚀 Start CBT</button>
+<span id="cbtAvail" style="color:#5b7a88;font-size:14px;font-weight:600"></span>
+</div>
+</div>
+<div id="cbtPlay" class="card hidden" style="position:relative"></div>
+<div id="cbtResult" class="card result-card hidden"></div>
+</section>
+
+<!-- ============ QUIZ VIEW ============ -->
+<section id="quizView" class="hidden">
+<div id="quizSetup" class="card">
+<h2 style="margin:2px 0 4px">⚡ Build your quiz</h2>
+<p class="sec-sub" style="margin:0 0 12px">Pick an exam and subject — questions are shuffled every time, with instant scoring and explanations after each answer.</p>
+<div class="setupgrid">
+<div><div class="setuplabel">Exam</div><div class="chiprow" id="setupExam"></div></div>
+<div><div class="setuplabel">Subject</div><div class="chiprow" id="setupSubject"></div></div>
+<div><div class="setuplabel">Questions</div><div class="chiprow" id="setupCount"></div></div>
+</div>
+<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px">
+<button type="button" id="qStart" class="btn primary" style="padding:13px 30px;font-size:16px;border-radius:13px">🚀 Start quiz</button>
+<span id="availNote" style="color:#5b7a88;font-size:14px;font-weight:600"></span>
+</div>
+</div>
+<div id="quizPlay" class="card hidden"></div>
+<div id="quizResult" class="card result-card hidden"></div>
+</section>
+
+<section class="card" style="margin-top:30px">
+<h2 style="margin:2px 0 4px">💬 Discussions</h2>
+<p class="sec-sub" style="margin:0 0 12px">Debate answers, share mnemonics and help each other out.</p>
+<button type="button" id="postBtn" class="btn primary">Start discussion</button>
+</section>
+</main>
+
+<footer>
+<div class="socialwrap">
+<h3>💬 Got suggestions?</h3>
+<p class="lead">Ideas for new features, spotted a mistake in a question, or just want to say hi? Drop a message — I read everything.</p>
+<div class="socialbtns">
+<button type="button" class="sbtn email" id="emailCopyBtn" title="Click to copy my email address"><span class="sic">📧</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="295d48415a4c4c475e4847401b1b1b694e44484045074a4644">[email&#160;protected]</a></button>
+<a class="sbtn insta" href="https://www.instagram.com/tahseen_nazir" target="_blank" rel="noopener"><span class="sic">📸</span> @tahseen_nazir</a>
+</div>
+<p class="minilink">💡 Click the email to <b>copy</b> it — or <a href="/cdn-cgi/l/email-protection#2f5b4e475c4a4a41584e41461d1d1d6f48424e4643014c4042105c5a4d454a4c5b12624a4b7c5b5a4b4a415b675a4d0a1d1f7c5a48484a5c5b464041">open your mail app ↗</a></p>
+<p class="credit"><b>MedStudentHub</b> — built with 💚 by <b>Tahseen Nazir</b> for medical students<br>
+Questions are PYQ-style practice material modelled on FMGE &amp; NEET-PG patterns. Always cross-check with standard textbooks.</p>
+</div>
+</footer>
+
+<!-- ============ AUTH MODAL ============ -->
+<div id="authModal" class="modal hidden" aria-hidden="true">
+<div class="modalbox">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h2 id="authTitle" style="margin:0">Create account</h2>
+<button type="button" id="closeBtn" class="btn secondary">Close</button>
+</div>
+<input id="email" class="field" type="email" autocomplete="email" placeholder="Email">
+<input id="password" class="field" type="password" autocomplete="new-password" placeholder="Password (minimum 6 characters)">
+<button type="button" id="submitAuth" class="btn primary" style="width:100%;padding:13px;margin-top:8px">Sign up</button>
+<div id="authMsg" class="notice hidden"></div>
+<button type="button" id="resendBtn" class="btn secondary hidden" style="width:100%;margin-top:10px">Resend confirmation email</button>
+<p class="switchlink"><a href="#" id="switchAuth">Already have an account? Login</a></p>
+</div></div>
+
+<button type="button" id="toTop" class="totop" aria-label="Back to top">↑</button>
+<div id="confetti" aria-hidden="true"></div>
+<div id="toast" role="status"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ============ QUESTION BANK ============
+High-yield FMGE / NEET-PG PYQ-style questions.
+answer = index (0-3) of the correct option. */
+window.QUESTIONS=[
+{"id":1,"exam":"FMGE","subject":"Anatomy","topic":"Nerve injuries","q":"A 25-year-old man fractures the surgical neck of his humerus in a fall. He cannot abduct his shoulder and has numbness over the lateral 'regimental badge' area. Which nerve is injured?","options":["Musculocutaneous nerve","Suprascapular nerve","Radial nerve","Axillary nerve"],"answer":3,"explanation":"Fractures of the surgical neck (and anterior shoulder dislocations) injure the axillary nerve, paralysing deltoid and teres minor and numbing the lateral shoulder — the 'regimental badge' area.","level":"High-yield"},
+{"id":2,"exam":"FMGE","subject":"Anatomy","topic":"Brachial plexus","q":"A newborn after a difficult breech delivery holds the arm adducted, internally rotated and pronated with a flexed wrist — the 'waiter's tip' posture. Which roots are injured?","options":["C5–C6","C6–C7","C7–C8","C8–T1"],"answer":0,"explanation":"Erb's palsy is an upper-trunk (C5–C6) injury from shoulder dystocia. Klumpke's palsy (C8–T1) instead causes a claw hand, sometimes with Horner syndrome.","level":"High-yield"},
+{"id":4,"exam":"NEET-PG","subject":"Anatomy","topic":"Blood supply","q":"The main blood supply to the head of the femur in adults comes from:","options":["Medial circumflex femoral artery","Lateral circumflex femoral artery","Artery of the ligamentum teres","Obturator artery"],"answer":0,"explanation":"Retinacular branches of the medial circumflex femoral artery dominate in adults. Their disruption in intracapsular femoral neck fractures causes avascular necrosis.","level":"High-yield"},
+{"id":5,"exam":"FMGE","subject":"Anatomy","topic":"Cranial nerves","q":"Which cranial nerve runs free within the cavernous sinus, alongside the internal carotid artery?","options":["Ophthalmic (V1)","Oculomotor (III)","Trochlear (IV)","Abducens (VI)"],"answer":3,"explanation":"In the cavernous sinus, III, IV, V1 and V2 lie in the lateral wall, while VI runs free in the lumen with the internal carotid artery — hence abducens palsy in cavernous sinus thrombosis.","level":"High-yield"},
+{"id":6,"exam":"FMGE","subject":"Anatomy","topic":"Thyroid surgery","q":"After thyroidectomy, a singer cannot reach high notes. Which nerve was most likely injured?","options":["Glossopharyngeal nerve","Recurrent laryngeal nerve","Internal branch of the superior laryngeal nerve","External branch of the superior laryngeal nerve"],"answer":3,"explanation":"The external branch of the superior laryngeal nerve supplies cricothyroid, the muscle of high pitch; injury causes a monotone voice. Recurrent laryngeal injury instead causes hoarseness.","level":"High-yield"},
+{"id":7,"exam":"NEET-PG","subject":"Anatomy","topic":"Brachial plexus","q":"A patient develops a claw hand with Horner syndrome after a violent hyperabduction injury. Which nerve roots are damaged?","options":["C4–C5","C5–C6","C7 alone","C8–T1"],"answer":3,"explanation":"Klumpke's palsy is a lower-trunk (C8–T1) injury: paralysis of intrinsic hand muscles (claw hand) plus T1 sympathetic fibre injury causing Horner syndrome.","level":"Moderate"},
+{"id":8,"exam":"NEET-PG","subject":"Physiology","topic":"Fluid balance","q":"Lab report: serum Na⁺ 118 mEq/L, plasma osmolality 240 mOsm/kg, urine osmolality 500 mOsm/kg, urine Na⁺ 60 mEq/L. The most likely diagnosis is:","options":["Addison disease","Osmotic diuresis","Diabetes insipidus","SIADH"],"answer":3,"explanation":"Hypotonic hyponatraemia with inappropriately concentrated urine and high urine sodium is the signature of SIADH. Treatment: fluid restriction, and hypertonic saline only if symptomatic.","level":"High-yield"},
+{"id":12,"exam":"NEET-PG","subject":"Physiology","topic":"Cardiovascular","q":"Within physiological limits, an increase in ventricular end-diastolic volume increases:","options":["Total peripheral resistance","Coronary vasoconstriction","Heart rate","Stroke volume"],"answer":3,"explanation":"The Frank–Starling law: longer resting sarcomere length (greater preload) produces a stronger contraction, increasing stroke volume — the heart's compensation in early failure.","level":"Moderate"},
+{"id":14,"exam":"NEET-PG","subject":"Physiology","topic":"Reflexes","q":"A sudden rise in central venous volume producing an increase in heart rate is an example of:","options":["Chemoreceptor reflex","Bezold–Jarisch reflex","Baroreceptor reflex","Bainbridge reflex"],"answer":3,"explanation":"The Bainbridge (atrial) reflex: stretch of atrial receptors by increased venous return sends vagal afferents to the medulla, increasing SA node firing and heart rate.","level":"Moderate"},
+{"id":17,"exam":"FMGE","subject":"Biochemistry","topic":"Vitamins","q":"The vitamin that serves as a cofactor for transamination reactions (AST, ALT) is:","options":["Thiamine (B1)","Riboflavin (B2)","Pyridoxine (B6)","Cobalamin (B12)"],"answer":2,"explanation":"Pyridoxal phosphate, the active form of vitamin B6, is the cofactor for aminotransferases. Isoniazid therapy causes B6 deficiency.","level":"Easy"},
+{"id":18,"exam":"FMGE","subject":"Biochemistry","topic":"Metabolic disorders","q":"A boy has self-mutilating behaviour, choreoathetosis, intellectual disability and hyperuricaemia with gout. The deficient enzyme is:","options":["Hypoxanthine-guanine phosphoribosyltransferase (HGPRT)","Xanthine oxidase","APRT","PRPP synthetase"],"answer":0,"explanation":"Lesch–Nyhan syndrome is an X-linked recessive HGPRT deficiency of the purine salvage pathway. Allopurinol helps the gout but not the neurological features.","level":"High-yield"},
+{"id":19,"exam":"FMGE","subject":"Biochemistry","topic":"Metabolic disorders","q":"Urine that turns black on standing, with dark cartilage and spondyloarthritis. The deficient enzyme is:","options":["Homogentisic acid oxidase","Phenylalanine hydroxylase","Branched-chain α-ketoacid dehydrogenase","Tyrosinase"],"answer":0,"explanation":"Alkaptonuria is a deficiency of homogentisic acid oxidase; accumulated homogentisic acid polymerises, causing black urine and ochronotic arthritis.","level":"Moderate"},
+{"id":21,"exam":"FMGE","subject":"Biochemistry","topic":"Nutrition","q":"A 2-year-old has oedema, flaky 'paint' dermatosis and an enlarged fatty liver. The deficiency is of:","options":["Iron","Thiamine","Total calories","Protein"],"answer":3,"explanation":"Kwashiorkor is protein deficiency with relatively adequate calories — oedema, dermatosis and fatty liver. Marasmus is overall calorie deficiency with wasting but no oedema.","level":"Easy"},
+{"id":22,"exam":"NEET-PG","subject":"Pharmacology","topic":"Anaphylaxis","q":"The single most important immediate drug in anaphylactic shock is:","options":["IV chlorpheniramine","IV salbutamol","IV hydrocortisone","IM adrenaline"],"answer":3,"explanation":"IM adrenaline 0.5 mg of 1:1000 into the anterolateral thigh is first-line and life-saving. Steroids and antihistamines are adjuncts, never substitutes.","level":"High-yield"},
+{"id":23,"exam":"FMGE","subject":"Pharmacology","topic":"Poisoning","q":"A farmer presents with pinpoint pupils, bradycardia, salivation and muscle fasciculations (organophosphate poisoning). The antidote combination is:","options":["Atropine plus pralidoxime","N-acetylcysteine","Flumazenil","Naloxone"],"answer":0,"explanation":"Atropine blocks muscarinic effects; pralidoxime reactivates acetylcholinesterase before it 'ages'. Diazepam is added for seizures.","level":"High-yield"},
+{"id":24,"exam":"FMGE","subject":"Pharmacology","topic":"Poisoning","q":"The specific antidote for paracetamol (acetaminophen) overdose is:","options":["N-acetylcysteine","Naloxone","Atropine","Protamine sulphate"],"answer":0,"explanation":"N-acetylcysteine replenishes glutathione, detoxifying the NAPQI metabolite. It is most effective within 8–10 hours of ingestion.","level":"Easy"},
+{"id":25,"exam":"NEET-PG","subject":"Pharmacology","topic":"Anticoagulants","q":"Warfarin produces its anticoagulant effect by:","options":["Directly inhibiting thrombin","Potentiating antithrombin III","Inhibiting vitamin K epoxide reductase","Blocking platelet COX-1"],"answer":2,"explanation":"Warfarin inhibits vitamin K epoxide reductase, reducing synthesis of factors II, VII, IX and X (and proteins C and S). Monitor with the INR; reverse with vitamin K, FFP or PCC.","level":"Moderate"},
+{"id":26,"exam":"NEET-PG","subject":"Pharmacology","topic":"Antidiabetics","q":"Glimepiride lowers blood glucose primarily by:","options":["Closing ATP-sensitive K⁺ channels on β cells","Increasing peripheral insulin sensitivity","Inhibiting intestinal α-glucosidase","Inhibiting hepatic gluconeogenesis"],"answer":0,"explanation":"Sulfonylureas close K-ATP channels → depolarisation → Ca²⁺ influx → insulin granule exocytosis. They require functioning β cells and can cause hypoglycaemia and weight gain.","level":"Moderate"},
+{"id":27,"exam":"FMGE","subject":"Pharmacology","topic":"Antiepileptics","q":"Long-term phenytoin therapy classically causes:","options":["Gingival hyperplasia","Xerostomia","Weight loss","Alopecia"],"answer":0,"explanation":"Phenytoin's classic adverse effects include gingival hyperplasia, hirsutism, cerebellar signs at toxic levels, megaloblastic anaemia and fetal hydantoin syndrome.","level":"Easy"},
+{"id":29,"exam":"NEET-PG","subject":"Pharmacology","topic":"Diuretics","q":"Thiazide diuretics characteristically cause:","options":["Metabolic acidosis","Hyperphosphataemia","Hyperkalaemia","Hypercalcaemia"],"answer":3,"explanation":"Thiazides increase distal calcium reabsorption — hypercalcaemia — along with hypokalaemia, hyperuricaemia and hyperglycaemia. Loop diuretics do the opposite (hypocalcaemia).","level":"Moderate"},
+{"id":30,"exam":"FMGE","subject":"Pathology","topic":"Leukaemia","q":"Auer rods seen in blast cells are diagnostic of:","options":["Acute lymphoblastic leukaemia","Chronic myeloid leukaemia","Acute myeloid leukaemia","Hairy cell leukaemia"],"answer":2,"explanation":"Auer rods are pathognomonic of AML. In acute promyelocytic leukaemia (M3, t(15;17)) they are numerous and the patient risks DIC — treat with ATRA plus arsenic.","level":"High-yield"},
+{"id":32,"exam":"NEET-PG","subject":"Pathology","topic":"Nephrology","q":"The most common cause of nephrotic syndrome in a 4-year-old child is:","options":["Membranous nephropathy","Focal segmental glomerulosclerosis","Minimal change disease","Post-streptococcal glomerulonephritis"],"answer":2,"explanation":"Minimal change disease shows fusion (effacement) of epithelial foot processes on EM, causes highly selective proteinuria, and responds dramatically to steroids.","level":"High-yield"},
+{"id":33,"exam":"NEET-PG","subject":"Pathology","topic":"Tumour pathology","q":"Psammoma bodies are seen in all of the following EXCEPT:","options":["Papillary thyroid carcinoma","Meningioma","Serous cystadenocarcinoma of the ovary","Follicular thyroid carcinoma"],"answer":3,"explanation":"Psammoma bodies occur in papillary thyroid carcinoma, meningioma, serous ovarian tumours and papillary renal cell carcinoma — but not in follicular thyroid carcinoma.","level":"Moderate"},
+{"id":34,"exam":"FMGE","subject":"Pathology","topic":"Plasma cell disorders","q":"A 65-year-old with back pain has punched-out lytic skull lesions, a serum M spike and urine monoclonal light chains. The urinary protein is called:","options":["Bence Jones protein","Cryoglobulin","β2-microglobulin","Albumin"],"answer":0,"explanation":"Bence Jones proteins are monoclonal immunoglobulin light chains excreted in multiple myeloma. Remember CRAB: hyperCalcaemia, Renal failure, Anaemia, Bone lesions.","level":"Easy"},
+{"id":35,"exam":"FMGE","subject":"Pathology","topic":"Deposits","q":"Apple-green birefringence with Congo red stain under polarised light confirms:","options":["Gout","Wilson disease","Haemochromatosis","Amyloidosis"],"answer":3,"explanation":"Congo red staining with apple-green birefringence is diagnostic of amyloid deposition. Primary (AL) amyloidosis is associated with plasma cell dyscrasias.","level":"Easy"},
+{"id":38,"exam":"NEET-PG","subject":"Microbiology","topic":"Toxins","q":"Diphtheria toxin inhibits protein synthesis by ADP-ribosylation of:","options":["Elongation factor 2","Initiation factor 2","28S rRNA","Release factor 1"],"answer":0,"explanation":"Diphtheria toxin (like Pseudomonas exotoxin A) ADP-ribosylates elongation factor 2, halting host protein synthesis and causing necrotizing pharyngitis with a grey membrane.","level":"Moderate"},
+{"id":39,"exam":"FMGE","subject":"Microbiology","topic":"Toxins","q":"Tetanospasmin produces spastic paralysis by blocking the release of:","options":["Glycine and GABA from inhibitory interneurons","Glutamate from excitatory neurons","Dopamine in the basal ganglia","Acetylcholine at the motor end plate"],"answer":0,"explanation":"Tetanospasmin blocks glycine/GABA release from Renshaw cells, abolishing inhibition → risus sardonicus and opisthotonus. Manage with tetanus immunoglobulin, debridement and metronidazole.","level":"High-yield"},
+{"id":40,"exam":"FMGE","subject":"Microbiology","topic":"Culture media","q":"The selective culture medium for Vibrio cholerae is:","options":["MacConkey agar","Loeffler's serum slope","TCBS agar","Lowenstein–Jensen medium"],"answer":2,"explanation":"Thiosulphate citrate bile salts sucrose (TCBS) agar selectively grows V. cholerae as yellow, sucrose-fermenting colonies.","level":"Easy"},
+{"id":41,"exam":"NEET-PG","subject":"Microbiology","topic":"Hepatitis","q":"The hepatitis B marker indicating active viral replication and high infectivity is:","options":["Anti-HBc IgG","Anti-HBe","Anti-HBs","HBeAg"],"answer":3,"explanation":"HBeAg means high viral replication and infectivity; its antibody (anti-HBe) indicates low infectivity. Anti-HBs = immunity, HBsAg beyond 6 months = chronic infection.","level":"Moderate"},
+{"id":43,"exam":"FMGE","subject":"Medicine","topic":"Ophthalmology","q":"The most common cause of blindness in India is:","options":["Cataract","Trachoma","Diabetic retinopathy","Glaucoma"],"answer":0,"explanation":"Cataract is the leading cause of (curable) blindness in India. Glaucoma is the leading cause of irreversible blindness.","level":"Easy"},
+{"id":44,"exam":"FMGE","subject":"Medicine","topic":"Infections","q":"Empirical oral drug for uncomplicated enteric (typhoid) fever in India, given widespread quinolone resistance:","options":["Ciprofloxacin","Amoxicillin","Azithromycin","Cotrimoxazole"],"answer":2,"explanation":"In India, azithromycin is the usual empirical oral choice for uncomplicated typhoid; ceftriaxone is used for severe disease. Always culture when possible.","level":"Moderate"},
+{"id":45,"exam":"NEET-PG","subject":"Medicine","topic":"Cardiology","q":"Hypotension, distended neck veins and muffled heart sounds (Beck's triad) indicate:","options":["Tension pneumothorax","Cardiac tamponade","Constrictive pericarditis","Massive pulmonary embolism"],"answer":1,"explanation":"Beck's triad suggests cardiac tamponade — an emergency treated with urgent pericardiocentesis. Look also for pulsus paradoxus and electrical alternans.","level":"High-yield"},
+{"id":46,"exam":"FMGE","subject":"Medicine","topic":"Acid-base","q":"Deep, rapid, sighing (Kussmaul) respiration is characteristic of:","options":["Metabolic acidosis","Metabolic alkalosis","Respiratory alkalosis","Hysterical hyperventilation"],"answer":0,"explanation":"Kussmaul breathing is respiratory compensation for metabolic acidosis — classic in diabetic ketoacidosis, where the breath may smell of acetone.","level":"Easy"},
+{"id":48,"exam":"NEET-PG","subject":"Medicine","topic":"Haematology","q":"The best single investigation to confirm iron deficiency anaemia is:","options":["Serum iron","TIBC","Serum ferritin","Bone marrow examination"],"answer":2,"explanation":"Serum ferritin reflects storage iron and is low in iron deficiency — the most specific routine test. Note it rises with inflammation, where soluble transferrin receptor helps.","level":"Moderate"},
+{"id":50,"exam":"NEET-PG","subject":"Medicine","topic":"Neurology","q":"First-line drug for a generalised convulsion lasting more than 5 minutes (status epilepticus) is:","options":["IV lorazepam","IM phenytoin","Rectal carbamazepine","Oral levetiracetam"],"answer":0,"explanation":"A benzodiazepine — IV lorazepam (or diazepam/IM midazolam) — is first-line, followed by loading with phenytoin, fosphenytoin or levetiracetam.","level":"High-yield"},
+{"id":51,"exam":"NEET-PG","subject":"Surgery","topic":"Intestinal obstruction","q":"The most likely cause of small bowel obstruction in a patient with two previous laparotomies is:","options":["Inguinal hernia","Postoperative adhesions","Caecal malignancy","Intussusception"],"answer":1,"explanation":"In previously operated abdomens, adhesions are the leading cause of small bowel obstruction — colicky pain, distension, vomiting and obstruction. Conservative management first if there are no strangulation signs.","level":"Easy"},
+{"id":52,"exam":"FMGE","subject":"Surgery","topic":"Postoperative care","q":"The most common cause of fever in the first 24–48 hours after surgery is:","options":["Urinary tract infection","Wound infection","Atelectasis","Deep vein thrombosis"],"answer":2,"explanation":"The classic timeline: days 1–2 atelectasis, days 3–5 UTI/wound infection, day 5–7 DVT, after day 7 intra-abdominal abscess. Treatment of early fever: chest physiotherapy and mobilisation.","level":"High-yield"},
+{"id":53,"exam":"NEET-PG","subject":"Surgery","topic":"Trauma","q":"A trauma patient has severe respiratory distress, absent breath sounds and hyper-resonance on the right, distended neck veins and tracheal shift to the left. The immediate management is:","options":["Immediate chest X-ray","Needle decompression of the right chest","IV fluid resuscitation","Endotracheal intubation"],"answer":1,"explanation":"This is a tension pneumothorax — a clinical diagnosis. Decompress immediately (classically 2nd intercostal space, mid-clavicular line; newer ATLS also accepts 5th ICS anterior axillary line) before any imaging.","level":"High-yield"},
+{"id":54,"exam":"FMGE","subject":"Surgery","topic":"Biliary surgery","q":"A patient with obstructive jaundice is found to have a stone in the common bile duct that needs removal. The procedure of choice is:","options":["MRCP","ERCP with sphincterotomy","Open choledochotomy","Percutaneous transhepatic cholangiography"],"answer":1,"explanation":"ERCP is both diagnostic and therapeutic — sphincterotomy with stone extraction. MRCP is the non-invasive diagnostic gold standard but cannot remove stones.","level":"Moderate"},
+{"id":55,"exam":"NEET-PG","subject":"Surgery","topic":"Trauma","q":"Periorbital bruising (raccoon eyes), haemotympanum and CSF rhinorrhoea suggest:","options":["Zygomatic arch fracture","Anterior cranial fossa (basal skull) fracture","Le Fort II fracture","Cervical spine injury"],"answer":1,"explanation":"Basilar skull fracture signs: raccoon eyes, Battle's sign (mastoid ecchymosis), haemotympanum and CSF leak. Avoid nasogastric tubes and blind nasal packing.","level":"Moderate"},
+{"id":56,"exam":"FMGE","subject":"Surgery","topic":"Burns","q":"Using the Parkland formula, the fluid for the first 24 hours in a 70 kg adult with 40% TBSA burns is:","options":["2 × 70 × 40 mL","4 × 70 × 40 mL","4 × 40 × 40 mL","3 × 70 × 40 mL"],"answer":1,"explanation":"Parkland: 4 mL Ringer lactate × body weight (kg) × %TBSA over 24 h — here 4 × 70 × 40 = 11,200 mL. Half in the first 8 hours from the time of the burn, the rest over the next 16, titrated to urine output (0.5 mL/kg/h).","level":"High-yield"},
+{"id":57,"exam":"FMGE","subject":"OBG","topic":"Postpartum haemorrhage","q":"The most common cause of primary postpartum haemorrhage is:","options":["Genital tract trauma","Uterine atony","Retained products of conception","Coagulopathy"],"answer":1,"explanation":"Remember the 4 Ts — Tone (most common), Trauma, Tissue, Thrombin. First steps: uterine massage and an oxytocic, then bimanual compression if bleeding continues.","level":"High-yield"},
+{"id":58,"exam":"FMGE","subject":"OBG","topic":"Ectopic pregnancy","q":"The most common site of ectopic pregnancy is the:","options":["Isthmus of the fallopian tube","Ampulla of the fallopian tube","Interstitial (cornual) region","Ovary"],"answer":1,"explanation":"About 70% of ectopics implant in the ampulla. Isthmic ectopics rupture earliest; interstitial ones rupture late but bleed catastrophically.","level":"Easy"},
+{"id":59,"exam":"FMGE","subject":"OBG","topic":"Antepartum haemorrhage","q":"Painless, bright-red vaginal bleeding at 32 weeks with a soft, non-tender uterus and a high floating head suggests:","options":["Placental abruption","Placenta previa","Uterine rupture","Cervical carcinoma"],"answer":1,"explanation":"Placenta previa classically causes painless bright-red bleeding with a soft uterus and malposition/high presenting part. Do a USG before any vaginal examination. Abruption is painful with a woody, tender uterus.","level":"High-yield"},
+{"id":60,"exam":"FMGE","subject":"OBG","topic":"Eclampsia","q":"The drug of choice for controlling convulsions in eclampsia is:","options":["Diazepam","Phenytoin","Magnesium sulphate","Labetalol"],"answer":2,"explanation":"Magnesium sulphate (Pritchard IM or Zuspan IV regimens) is the anticonvulsant of choice in eclampsia, also used for prophylaxis in severe preeclampsia. Monitor reflexes, respiration and urine output; antidote is calcium gluconate.","level":"High-yield"},
+{"id":61,"exam":"NEET-PG","subject":"OBG","topic":"Postpartum haemorrhage","q":"The most common cause of secondary postpartum haemorrhage (bleeding from 24 hours to 6 weeks after delivery) is:","options":["Uterine atony","Retained products of conception","Cervical laceration","von Willebrand disease"],"answer":1,"explanation":"Secondary PPH is usually due to retained bits of placenta/membranes with endometritis. Manage with antibiotics and evacuation if indicated.","level":"Moderate"},
+{"id":62,"exam":"NEET-PG","subject":"Pediatrics","topic":"Congenital heart disease","q":"The most common cyanotic congenital heart disease presenting beyond the neonatal period is:","options":["Transposition of great arteries","Truncus arteriosus","Tetralogy of Fallot","Total anomalous pulmonary venous connection"],"answer":2,"explanation":"Tetralogy of Fallot — VSD, overriding aorta, right ventricular outflow obstruction and RVH — is the most common cyanotic CHD overall. Infants squat or assume knee-chest position during hypoxic spells.","level":"High-yield"},
+{"id":63,"exam":"FMGE","subject":"Pediatrics","topic":"Congenital heart disease","q":"The most common congenital heart disease overall is:","options":["Atrial septal defect","Ventricular septal defect","Patent ductus arteriosus","Coarctation of the aorta"],"answer":1,"explanation":"VSD is the most common congenital heart defect, classically producing a pansystolic murmur at the lower left sternal border. Many small VSDs close spontaneously.","level":"Easy"},
+{"id":64,"exam":"FMGE","subject":"Pediatrics","topic":"Immunization","q":"BCG vaccine is administered by which route and at which site?","options":["Intradermal, left upper arm (deltoid)","Subcutaneous, right arm","Intramuscular, anterolateral thigh","Intradermal, right forearm"],"answer":0,"explanation":"BCG is given intradermally over the left deltoid at birth (0.05 mL). It protects mainly against miliary TB and tuberculous meningitis.","level":"Easy"},
+{"id":65,"exam":"FMGE","subject":"Pediatrics","topic":"Immunization","q":"In India's national immunization schedule, the first measles-containing vaccine is given at:","options":["Birth","6 completed months","9 completed months","15 months"],"answer":2,"explanation":"The first dose (MR/MMR) is given at 9 completed months, when passive maternal antibody has waned; a second dose follows at 16–24 months.","level":"Moderate"},
+{"id":66,"exam":"FMGE","subject":"Pediatrics","topic":"Neonatology","q":"Jaundice appearing within the first 24 hours of life is:","options":["Physiological jaundice","Breast milk jaundice","Always due to breastfeeding","Pathological — usually haemolysis"],"answer":3,"explanation":"Jaundice in the first 24 hours is always pathological — think Rh/ABO incompatibility or G6PD deficiency. Physiological jaundice appears after 24 hours and peaks on days 3–5.","level":"High-yield"},
+{"id":68,"exam":"FMGE","subject":"PSM","topic":"Health policy","q":"The goal of 'Health for All' through primary health care was adopted at:","options":["Ottawa, 1986","Jakarta, 1997","Alma-Ata, 1978","Astana, 2018"],"answer":2,"explanation":"The Alma-Ata Declaration (1978) defined primary health care and set the 'Health for All by 2000 AD' goal. Astana 2018 reaffirmed it 40 years later.","level":"Easy"},
+{"id":69,"exam":"FMGE","subject":"PSM","topic":"Demography","q":"According to the Census of India 2011, the sex ratio (females per 1000 males) was:","options":["927","933","940","950"],"answer":2,"explanation":"Census 2011: sex ratio 940 (up from 933 in 2001), population 1.21 billion, literacy 74%. Kerala recorded the highest sex ratio (1084) and Haryana the lowest (879).","level":"Moderate"},
+{"id":70,"exam":"NEET-PG","subject":"PSM","topic":"Epidemiology","q":"The indicator that combines years of life lost from premature death with years lived with disability is:","options":["QALY","HALY","IMR","DALY"],"answer":3,"explanation":"The disability-adjusted life year (DALY) = years of life lost (YLL) + years lived with disability (YLD); one DALY equals one lost healthy life-year. Used to compare disease burden.","level":"Moderate"},
+{"id":71,"exam":"FMGE","subject":"Forensic Medicine","topic":"Legal medicine","q":"The McNaughten rule relates to:","options":["Admissibility of dying declarations","Criminal responsibility of the insane","Consent for autopsy","Death due to drowning"],"answer":1,"explanation":"The McNaughten rule tests legal insanity: the accused, at the time of the act, did not know its nature and quality or that it was wrong. Indian law incorporates it in IPC Section 84.","level":"Moderate"},
+{"id":72,"exam":"FMGE","subject":"Forensic Medicine","topic":"Legal medicine","q":"Dowry death is defined under which section of the Indian Penal Code?","options":["Section 302","Section 306","Section 304B","Section 498A"],"answer":2,"explanation":"IPC 304B defines dowry death; 498A deals with cruelty by husband or relatives, and 306 with abetment of suicide.","level":"Moderate"},
+{"id":73,"exam":"NEET-PG","subject":"Forensic Medicine","topic":"Legal medicine","q":"In India, a dying declaration is admissible in evidence under:","options":["Section 45 of the Indian Evidence Act","Section 32(1) of the Indian Evidence Act","Section 113B of the Indian Evidence Act","It is inadmissible without corroboration"],"answer":1,"explanation":"Under Section 32(1) of the Indian Evidence Act, statements by a person as to the cause of death are admissible. Ideally recorded by a Magistrate, in the declarant's own words, while conscious and fit.","level":"Moderate"},
+{"id":74,"exam":"FMGE","subject":"Ophthalmology","topic":"Trachoma","q":"The WHO 'SAFE strategy' is used for the control of:","options":["Glaucoma","Cataract","Trachoma","Diabetic retinopathy"],"answer":2,"explanation":"SAFE = Surgery for trichiasis, Antibiotics (azithromycin), Facial cleanliness and Environmental improvement — targeting trachoma, caused by Chlamydia trachomatis serotypes A–C, the leading infectious cause of blindness.","level":"Easy"},
+{"id":75,"exam":"FMGE","subject":"Ophthalmology","topic":"Vitamin A deficiency","q":"The earliest clinical manifestation of vitamin A deficiency is:","options":["Bitot spots","Night blindness","Corneal ulceration","Keratomalacia"],"answer":1,"explanation":"Nyctalopia (night blindness) is the earliest functional sign, from impaired rhodopsin regeneration. Bitot spots (foamy conjunctival patches) come later, then corneal xerosis, ulceration and keratomalacia.","level":"Easy"},
+{"id":76,"exam":"NEET-PG","subject":"Ophthalmology","topic":"Blindness","q":"The leading cause of irreversible blindness worldwide is:","options":["Cataract","Glaucoma","Trachoma","Refractive error"],"answer":1,"explanation":"Glaucoma is the leading cause of irreversible blindness (optic nerve damage). Cataract causes more blindness overall but is reversible with surgery.","level":"Moderate"}
+];
+</script>
+<script>
+(function(){
+  const SUPABASE_URL="https://egrbgayjmjplfwjwfesq.supabase.co";
+  const SUPABASE_KEY="sb_publishable_GLt4N1ChNKdPC68EI8NApQ_oYP0s8on";
+
+  /* ---------- safe storage (works even when localStorage is blocked) ---------- */
+  const mem={};
+  const store={
+    get(k,fb){try{const v=localStorage.getItem(k);return v===null?fb:JSON.parse(v)}catch(e){return (k in mem)?mem[k]:fb}},
+    set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
+  };
+
+  /* ---------- state ---------- */
+  let bank=Array.isArray(window.QUESTIONS)?window.QUESTIONS.slice():[];
+  let view="practice";
+  let fExam="All",fSubject="All",fSearch="",fBook=false;
+  let sExam="All",sSubject="All",sCount=10;
+  let stats=store.get("msh_stats",{attempted:0,correct:0});
+  let attemptMap=store.get("msh_attempts",{});
+  let bookmarks=new Set(store.get("msh_bookmarks",[]));
+  let quiz=null;
+
+  const el=id=>document.getElementById(id);
+  const modal=el("authModal");
+  let client=null,currentUser=null;
+
+  function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+  /* ---------- toast ---------- */
+  let toastT=null;
+  function toast(msg){const t=el("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),2800)}
+
+  /* ---------- confetti ---------- */
+  function confetti(){
+    const c=el("confetti");if(!c)return;
+    const colors=["#12a889","#28d5b0","#f5b301","#ef476f","#3b82f6","#22c55e"];
+    for(let i=0;i<80;i++){
+      const p=document.createElement("i");
+      p.style.left=(Math.random()*100)+"%";
+      p.style.background=colors[i%colors.length];
+      p.style.width=p.style.height=(6+Math.random()*6)+"px";
+      p.style.borderRadius=Math.random()>.5?"50%":"2px";
+      p.style.animationDuration=(2.1+Math.random()*1.7)+"s";
+      p.style.animationDelay=(Math.random()*.5)+"s";
+      p.style.setProperty("--x",(Math.random()*80-40)+"px");
+      c.appendChild(p);
+    }
+    setTimeout(()=>{c.innerHTML=""},4600);
+  }
+
+  /* ---------- derived helpers ---------- */
+  const subjects=()=>[...new Set(bank.map(q=>q.subject))].sort();
+  function filtered(fE,fS){
+    return bank.filter(q=>(fE==="All"||q.exam===fE)&&(fS==="All"||q.subject===fS));
+  }
+  const L=["A","B","C","D"];
+
+  /* ---------- header stats ---------- */
+  function updateHero(){
+    el("hsQ").textContent=bank.length;
+    el("hsS").textContent=subjects().length;
+  }
+
+  /* ---------- stats bar ---------- */
+  function updateStatsBar(){
+    const acc=stats.attempted?Math.round(stats.correct/stats.attempted*100):0;
+    el("statsBar").innerHTML=
+      '<span class="stat">🎯 Attempted <b>'+stats.attempted+"</b></span>"+
+      '<span class="stat">✅ Correct <b>'+stats.correct+"</b></span>"+
+      '<span class="stat">📈 Accuracy <b>'+acc+"%</b></span>"+
+      '<span class="stat">⭐ Bookmarked <b>'+bookmarks.size+"</b></span>";
+  }
+
+  /* ---------- chips ---------- */
+  function chipRow(container,current,items,key){
+    container.innerHTML=items.map(it=>'<button type="button" class="chip '+(it.value===current?"on":"")+'" data-'+key+'="'+esc(it.value)+'">'+it.label+"</button>").join("");
+  }
+  function renderFilterBar(){
+    chipRow(el("rowExam"),fExam,[{value:"All",label:"All exams"},{value:"FMGE",label:"FMGE"},{value:"NEET-PG",label:"NEET-PG"}],"exam");
+    chipRow(el("rowSubject"),fSubject,[{value:"All",label:"All subjects"}].concat(subjects().map(s=>({value:s,label:s+" ("+bank.filter(q=>q.subject===s).length+")"}))).concat([{value:"__book",label:"⭐ Bookmarked ("+bookmarks.size+")"}]),"subject");
+  }
+
+  /* ---------- practice list ---------- */
+  function applyFilters(){
+    const list=bank.filter(q=>
+      (fExam==="All"||q.exam===fExam)&&
+      (fSubject==="All"||(fSubject==="__book"?bookmarks.has(q.id):q.subject===fSubject))&&
+      (!fBook||bookmarks.has(q.id))&&
+      (!fSearch||(q.q+" "+q.topic+" "+q.subject+" "+q.exam).toLowerCase().includes(fSearch.toLowerCase()))
+    );
+    const box=el("questions");
+    if(!list.length){
+      box.innerHTML='<div class="card empty"><div class="big">😕</div><b>No questions match your filters.</b><br><button type="button" class="btn secondary" style="margin-top:12px" id="clearF">Clear filters</button></div>';
+      return;
+    }
+    box.innerHTML=list.map((q,i)=>{
+      const att=attemptMap[q.id];
+      const opts=q.options.map((o,j)=>{
+        let cls="opt";
+        if(att!=null){if(j===q.answer)cls+=" correct";else if(j===att.sel)cls+=" wrong";}
+        return '<button type="button" class="'+cls+'" data-opt="'+j+'"><span class="ol">'+L[j]+'</span><span>'+esc(o)+"</span></button>";
+      }).join("");
+      const star=bookmarks.has(q.id);
+      return '<article class="qcard card" data-id="'+q.id+'" style="animation-delay:'+Math.min(i*45,420)+'ms">'+
+        '<div class="qtop"><div class="tags">'+
+        '<span class="chip mini">'+esc(q.subject)+"</span>"+
+        (q.topic?'<span class="chip mini ghost">'+esc(q.topic)+"</span>":"")+
+        '<span class="badge '+(q.exam==="FMGE"?"b-fmge":q.exam==="NEET-PG"?"b-npg":"b-nug")+'">'+esc(q.exam)+"</span>"+
+        (q.level?'<span class="badge" style="background:#f1f3f6;color:#54657a">'+esc(q.level)+"</span>":"")+
+        '</div><button type="button" class="star '+(star?"on":"")+'" data-star="'+q.id+'" aria-label="Toggle bookmark">'+(star?"★":"☆")+"</button></div>"+
+        '<h3 class="qtext">'+esc(q.q)+"</h3>"+
+        '<div class="opts">'+opts+"</div>"+
+        '<div class="explain '+(att!=null?"":"hidden")+'" data-ex><b>✅ Correct answer: '+L[q.answer]+".</b> "+esc(q.explanation)+"</div>"+
+        (att==null?'<button type="button" class="reveal" data-reveal>Show answer &amp; explanation</button>':"")+
+      "</article>";
+    }).join("");
+  }
+
+  el("questions").addEventListener("click",e=>{
+    const starBtn=e.target.closest("[data-star]");
+    if(starBtn){
+      const id=+starBtn.dataset.star;
+      if(bookmarks.has(id)){bookmarks.delete(id)}else{bookmarks.add(id)}
+      store.set("msh_bookmarks",[...bookmarks]);
+      renderFilterBar();applyFilters();updateStatsBar();
+      return;
+    }
+    const rv=e.target.closest("[data-reveal]");
+    if(rv){
+      const card=rv.closest(".qcard");const q=bank.find(x=>x.id===+card.dataset.id);
+      card.querySelector("[data-ex]").classList.remove("hidden");
+      card.querySelectorAll(".opt").forEach((o,j)=>{if(j===q.answer)o.classList.add("correct")});
+      card.classList.add("done");rv.remove();return;
+    }
+    const optBtn=e.target.closest(".opt");
+    if(optBtn){
+      const card=optBtn.closest(".qcard");const id=+card.dataset.id;const q=bank.find(x=>x.id===id);
+      if(!q||attemptMap[id]!=null)return;
+      const sel=+optBtn.dataset.opt;const ok=sel===q.answer;
+      attemptMap[id]={sel,ok};store.set("msh_attempts",attemptMap);
+      stats.attempted++;if(ok)stats.correct++;store.set("msh_stats",stats);
+      card.classList.add("done");
+      card.querySelectorAll(".opt").forEach((o,j)=>{if(j===q.answer)o.classList.add("correct");else if(j===sel)o.classList.add("wrong")});
+      card.querySelector("[data-ex]").classList.remove("hidden");
+      const r=card.querySelector("[data-reveal]");if(r)r.remove();
+      updateStatsBar();
+    }
+  });
+
+  el("rowExam").addEventListener("click",e=>{const c=e.target.closest("[data-exam]");if(!c)return;fExam=c.dataset.exam;renderFilterBar();applyFilters()});
+  el("rowSubject").addEventListener("click",e=>{const c=e.target.closest("[data-subject]");if(!c)return;fSubject=c.dataset.subject;renderFilterBar();applyFilters()});
+  el("questions").addEventListener("click",e=>{if(e.target.closest("#clearF")){fExam="All";fSubject="All";fSearch="";fBook=false;el("search").value="";renderFilterBar();applyFilters()}});
+
+  el("search").addEventListener("input",e=>{
+    if(view!=="practice")setView("practice");
+    fSearch=e.target.value;applyFilters();
+    el("practiceView").scrollIntoView({behavior:"smooth"});
+  });
+
+  /* ---------- views ---------- */
+  function setView(v){
+    view=v;
+    el("practiceView").classList.toggle("hidden",v!=="practice");
+    el("quizView").classList.toggle("hidden",v!=="quiz");
+    el("tabPractice").classList.toggle("on",v==="practice");
+    el("tabQuiz").classList.toggle("on",v==="quiz");
+    el("cbtView").classList.toggle("hidden",v!=="cbt");
+    el("tabCbt").classList.toggle("on",v==="cbt");
+    if(v==="cbt") ensureCbtBank();
+  }
+  el("tabPractice").addEventListener("click",()=>setView("practice"));
+  el("tabQuiz").addEventListener("click",()=>{setView("quiz");el("quizSetup").scrollIntoView({behavior:"smooth",block:"start"})});
+  el("tabCbt").addEventListener("click",()=>{setView("cbt");el("cbtView").scrollIntoView({behavior:"smooth",block:"start"})});
+
+  /* ---------- quiz setup ---------- */
+  function renderSetup(){
+    chipRow(el("setupExam"),sExam,[{value:"All",label:"Mixed (all exams)"},{value:"FMGE",label:"FMGE"},{value:"NEET-PG",label:"NEET-PG"}],"sexam");
+    chipRow(el("setupSubject"),sSubject,[{value:"All",label:"All subjects"}].concat(subjects().map(s=>({value:s,label:s}))),"ssubject");
+    chipRow(el("setupCount"),String(sCount),[{value:"5",label:"5"},{value:"10",label:"10"},{value:"20",label:"20"}],"scount");
+    const avail=filtered(sExam,sSubject).length;
+    el("availNote").textContent=avail?avail+" questions match — you'll get "+Math.min(sCount,avail)+" random ones.":"No questions match — change the filters above.";
+  }
+  el("setupExam").addEventListener("click",e=>{const c=e.target.closest("[data-sexam]");if(!c)return;sExam=c.dataset.sexam;renderSetup()});
+  el("setupSubject").addEventListener("click",e=>{const c=e.target.closest("[data-ssubject]");if(!c)return;sSubject=c.dataset.ssubject;renderSetup()});
+  el("setupCount").addEventListener("click",e=>{const c=e.target.closest("[data-scount]");if(!c)return;sCount=+c.dataset.scount;renderSetup()});
+
+  function shuffle(a){const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r}
+
+  function startQuiz(){
+    const pool=filtered(sExam,sSubject);
+    if(!pool.length){toast("No questions match those filters.");return}
+    if(quiz&&quiz.timerId)clearInterval(quiz.timerId);
+    quiz={cfg:{exam:sExam,subject:sSubject,count:Math.min(sCount,pool.length)},queue:shuffle(pool).slice(0,Math.min(sCount,pool.length)),i:0,sel:[],t0:Date.now(),timerId:null};
+    el("quizSetup").classList.add("hidden");el("quizResult").classList.add("hidden");
+    const play=el("quizPlay");play.classList.remove("hidden");
+    quiz.timerId=setInterval(()=>{
+      const t=el("qtimer");if(t)t.textContent="⏱ "+fmtTime((Date.now()-quiz.t0)/1000);
+    },500);
+    renderQuizQ();
+    play.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  function fmtTime(s){s=Math.floor(s);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+
+  function renderQuizQ(){
+    const q=quiz.queue[quiz.i],n=quiz.queue.length,answered=quiz.sel[quiz.i]!=null;
+    el("quizPlay").innerHTML=
+      '<div class="pbar"><div class="pfill" style="width:'+Math.round((quiz.i+(answered?1:0))/n*100)+'%"></div></div>'+
+      '<div class="qmeta"><span class="qcount">Question '+(quiz.i+1)+" of "+n+"</span><span class='timer' id='qtimer'>⏱ "+fmtTime((Date.now()-quiz.t0)/1000)+"</span></div>"+
+      '<div class="tags"><span class="chip mini">'+esc(q.subject)+"</span>"+(q.topic?'<span class="chip mini ghost">'+esc(q.topic)+"</span>":"")+'<span class="badge '+(q.exam==="FMGE"?"b-fmge":q.exam==="NEET-PG"?"b-npg":"b-nug")+'">'+esc(q.exam)+"</span></div>"+
+      '<h3 class="qtext" style="font-size:18px">'+esc(q.q)+"</h3>"+
+      '<div class="opts" id="quizOpts">'+q.options.map((o,j)=>'<button type="button" class="opt" data-qopt="'+j+'"><span class="ol">'+L[j]+'</span><span>'+esc(o)+"</span></button>").join("")+"</div>"+
+      '<div id="qfeedback"></div><div id="qnextwrap"></div>';
+  }
+
+  el("quizPlay").addEventListener("click",e=>{
+    const b=e.target.closest("[data-qopt]");
+    if(b){
+      if(quiz.sel[quiz.i]!=null)return;
+      const q=quiz.queue[quiz.i];const sel=+b.dataset.qopt;const ok=sel===q.answer;
+      quiz.sel[quiz.i]=sel;
+      stats.attempted++;if(ok)stats.correct++;store.set("msh_stats",stats);updateStatsBar();
+      el("quizOpts").classList.add("done");
+      el("quizOpts").querySelectorAll(".opt").forEach((o,j)=>{if(j===q.answer)o.classList.add("correct");else if(j===sel)o.classList.add("wrong")});
+      el("qfeedback").innerHTML='<div class="feedback '+(ok?"ok":"no")+'">'+(ok?"🎉 Correct!":"❌ Not quite — the answer is "+L[q.answer]+".")+'</div><div class="explain"><b>Why:</b> '+esc(q.explanation)+"</div>";
+      const last=quiz.i===quiz.queue.length-1;
+      el("qnextwrap").innerHTML='<button type="button" class="btn primary qnext" id="qnext">'+(last?"🏁 See my results":"Next question →")+"</button>";
+      const pf=el("quizPlay").querySelector(".pfill");if(pf)pf.style.width=Math.round((quiz.i+1)/quiz.queue.length*100)+"%";
+      return;
+    }
+    if(e.target.closest("#qnext")){
+      if(quiz.i<quiz.queue.length-1){quiz.i++;renderQuizQ();el("quizPlay").scrollIntoView({behavior:"smooth",block:"start"})}
+      else finishQuiz();
+    }
+  });
+
+  function finishQuiz(){
+    clearInterval(quiz.timerId);
+    const n=quiz.queue.length;
+    const score=quiz.queue.reduce((a,q,j)=>a+(quiz.sel[j]===q.answer?1:0),0);
+    const pct=Math.round(score/n*100);
+    const secs=Math.floor((Date.now()-quiz.t0)/1000);
+    const tier=pct>=90?"🏆 Outstanding — exam-ready performance!":pct>=70?"🥇 Great job! Keep this streak going.":pct>=50?"💪 Decent effort — review the misses and go again.":"📚 Every attempt builds recall — review and retry!";
+    const wrongs=quiz.queue.filter((q,j)=>quiz.sel[j]!==q.answer);
+    const review=wrongs.length?'<div class="review"><h3>📖 Review — '+wrongs.length+" missed:</h3>"+wrongs.map(q=>'<div class="revitem"><b>'+esc(q.subject)+" · "+esc(q.topic||q.exam)+"</b><div style='margin:6px 0'>"+esc(q.q)+"</div><div><span class='you'>Your answer: "+(quiz.sel[quiz.queue.indexOf(q)]!=null?L[quiz.sel[quiz.queue.indexOf(q)]]:"—")+"</span> · <span class='right'>Correct: "+L[q.answer]+'</span></div><div style="font-size:13.5px;color:#5b7a88;margin-top:5px">'+esc(q.explanation)+"</div></div>").join("")+"</div>":"<p style='color:#0e6b4b;font-weight:800'>Flawless — nothing to review! 🌟</p>";
+    el("quizPlay").classList.add("hidden");
+    const res=el("quizResult");res.classList.remove("hidden");
+    res.innerHTML=
+      '<h2 style="margin:4px 0 0">🏁 Quiz complete</h2>'+
+      '<div class="ringwrap"><svg viewBox="0 0 120 120"><defs><linearGradient id="gradRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0fa385"/><stop offset="100%" stop-color="#28d5b0"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52"/></svg><div class="ringscore"><div><span id="ringPct">0%</span><small>'+score+"/"+n+" correct</small></div></div></div>"+
+      '<div class="tiermsg">'+tier+"</div>"+
+      '<div class="resultstats">⏱ Finished in '+fmtTime(secs)+" · 📊 Question bank: "+esc(quiz.cfg.exam==="All"?"Mixed":quiz.cfg.exam)+(quiz.cfg.subject!=="All"?" · "+esc(quiz.cfg.subject):"")+"</div>"+
+      review+
+      '<div class="resultbtns"><button type="button" class="btn primary" data-act="retry">🔁 Retry this quiz</button><button type="button" class="btn secondary" data-act="new">⚙️ New settings</button><button type="button" class="btn secondary" data-act="practice">📚 Back to practice</button></div>';
+    requestAnimationFrame(()=>{requestAnimationFrame(()=>{el("ringFg").style.strokeDashoffset=String(327*(1-pct/100))})});
+    countUp(el("ringPct"),pct);
+    if(pct>=70)confetti();
+    res.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  function countUp(node,target){
+    const t0=performance.now(),dur=1200;
+    (function step(t){
+      const p=Math.min((t-t0)/dur,1);
+      node.textContent=Math.round(target*(1-Math.pow(1-p,3)))+"%";
+      if(p<1)requestAnimationFrame(step);
+    })(t0);
+  }
+
+  el("quizResult").addEventListener("click",e=>{
+    const a=e.target.closest("[data-act]");
+    if(!a)return;
+    if(a.dataset.act==="retry"){startQuiz()}
+    else if(a.dataset.act==="new"){el("quizResult").classList.add("hidden");el("quizSetup").classList.remove("hidden");renderSetup();el("quizSetup").scrollIntoView({behavior:"smooth",block:"start"})}
+    else{setView("practice");el("practiceView").scrollIntoView({behavior:"smooth",block:"start"})}
+  });
+  el("qStart").addEventListener("click",startQuiz);
+
+  /* ---------- CBT EXAM MODE (NBE-style) ---------- */
+let cbtBank=null,cbtLoading=false,cbt=null,cExam="All",cSubject="All",cYear="All",cCount=20,cSecs=60,cMode="exam";
+
+function ensureCbtBank(){
+  if(cbtBank){renderCbtSetup();return}
+  if(window.PYQ_BANK&&window.PYQ_BANK.length){cbtBank=window.PYQ_BANK;renderCbtSetup();return}
+  if(cbtLoading)return;
+  cbtLoading=true;
+  el("cbtLoadState").classList.remove("hidden");
+  el("cbtLoadError").classList.add("hidden");
+  const s=document.createElement("script");
+  s.src="pyqbank.js";
+  s.onload=function(){cbtLoading=false;el("cbtLoadState").classList.add("hidden");
+    if(window.PYQ_BANK&&window.PYQ_BANK.length){cbtBank=window.PYQ_BANK;renderCbtSetup()}
+    else el("cbtLoadError").classList.remove("hidden")};
+  s.onerror=function(){cbtLoading=false;el("cbtLoadState").classList.add("hidden");el("cbtLoadError").classList.remove("hidden")};
+  document.head.appendChild(s);
+}
+el("cbtRetry").addEventListener("click",()=>{cbtLoading=false;ensureCbtBank()});
+
+function cbtPool(){return cbtBank.filter(q=>(cExam==="All"||q.e===cExam)&&(cSubject==="All"||q.s===cSubject)&&(cYear==="All"||String(q.y)===String(cYear)))}
+
+function renderCbtSetup(){
+  chipRow(el("cbtMode"),cMode,[{value:"exam",label:"🖥 Exam — answers at the end"},{value:"regular",label:"📖 Regular — instant answers"}],"cmode");
+  chipRow(el("cbtExam"),cExam,[{value:"All",label:"All exams"},{value:"AIIMS",label:"AIIMS"},{value:"NEET",label:"NEET"},{value:"INI-CET",label:"INI-CET"}],"cexam");
+  chipRow(el("cbtCount"),String(cCount),[10,20,50,100,200].map(n=>({value:String(n),label:String(n)})),"ccount");
+  chipRow(el("cbtTime"),String(cSecs),[{value:"45",label:"45 sec/q"},{value:"60",label:"60 sec/q"},{value:"90",label:"90 sec/q"},{value:"0",label:"Untimed"}],"ctime");
+  const subs=[...new Set(cbtBank.map(q=>q.s))].sort();
+  el("cbtSubject").innerHTML='<option value="All">All subjects</option>'+subs.map(s=>'<option value="'+esc(s)+'"'+(s===cSubject?" selected":"")+'>'+esc(s)+"</option>").join("");
+  const yrs=[...new Set(cbtBank.map(q=>q.y))].sort((a,b)=>b-a);
+  el("cbtYear").innerHTML='<option value="All">All years</option>'+yrs.map(y=>'<option value="'+y+'"'+(String(y)===String(cYear)?" selected":"")+'>'+y+"</option>").join("");
+  updateCbtAvail();
+}
+function updateCbtAvail(){
+  if(!cbtBank)return;
+  const n=cbtPool().length;
+  el("cbtAvail").textContent=n?n+" questions match — your CBT will have "+Math.min(cCount,n)+(cSecs?" · total time "+fmtCbt(cSecs*Math.min(cCount,n)):" · untimed"):"No questions match these filters.";
+}
+el("cbtMode").addEventListener("click",e=>{const c=e.target.closest("[data-cmode]");if(!c)return;cMode=c.dataset.cmode;renderCbtSetup()});
+el("cbtExam").addEventListener("click",e=>{const c=e.target.closest("[data-cexam]");if(!c)return;cExam=c.dataset.cexam;renderCbtSetup()});
+el("cbtCount").addEventListener("click",e=>{const c=e.target.closest("[data-ccount]");if(!c)return;cCount=+c.dataset.ccount;renderCbtSetup()});
+el("cbtTime").addEventListener("click",e=>{const c=e.target.closest("[data-ctime]");if(!c)return;cSecs=+c.dataset.ctime;renderCbtSetup()});
+el("cbtSubject").addEventListener("change",e=>{cSubject=e.target.value;updateCbtAvail()});
+el("cbtYear").addEventListener("change",e=>{cYear=e.target.value;updateCbtAvail()});
+
+function fmtCbt(sec){sec=Math.max(0,Math.round(sec));const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return (h?h+":":"")+String(m).padStart(h?2:1,"0")+":"+String(s).padStart(2,"0")}
+
+el("cbtStart").addEventListener("click",()=>{if(!cbtBank){ensureCbtBank();toast("Bank still loading — one moment…");return}startCbt()});
+
+function startCbt(){
+  const pool=cbtPool();
+  if(!pool.length){toast("No questions match those filters.");return}
+  if(cbt&&cbt.timerId)clearInterval(cbt.timerId);
+  const n=Math.min(cCount,pool.length);
+  cbt={qs:shuffle(pool).slice(0,n),sel:Array(n).fill(null),marked:new Set(),visited:new Set(),i:0,
+       cfg:{exam:cExam,subject:cSubject,year:cYear,n:n,secs:cSecs,mode:cMode},
+       end:cSecs?Date.now()+cSecs*n*1000:null,t0:Date.now(),timerId:null};
+  el("cbtSetup").classList.add("hidden");el("cbtResult").classList.add("hidden");
+  el("cbtPlay").classList.remove("hidden");
+  renderCbtQ();
+  cbt.timerId=setInterval(function(){
+    if(!cbt||!cbt.end)return;
+    const left=(cbt.end-Date.now())/1000;
+    const t=el("cbtTimer");
+    if(t){t.textContent="⏱ "+fmtCbt(left);t.classList.toggle("low",left<300)}
+    if(left<=0){toast("⏰ Time's up — auto-submitting!");submitCbt()}
+  },500);
+  el("cbtPlay").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function cbtPaletteState(i){
+  if(cbt.marked.has(i))return "mk";
+  if(cbt.sel[i]!=null)return "an";
+  if(cbt.visited.has(i))return "no";
+  return "nv";
+}
+
+function renderCbtQ(){
+  cbt.visited.add(cbt.i);
+  const q=cbt.qs[cbt.i],n=cbt.qs.length,i=cbt.i;
+  const instant=cbt.cfg.mode==="regular"&&cbt.sel[i]!=null;
+  const opts=q.o.map((o,j)=>{let cls="cbt-opt";if(cbt.sel[i]===j)cls+=" sel";if(instant){if(j===q.a)cls+=" correct";else if(j===cbt.sel[i])cls+=" wrong"}return '<div class="'+cls+'" data-copt="'+j+'" role="radio" aria-checked="'+(cbt.sel[i]===j?"true":"false")+'" tabindex="0"><span class="cbt-radio"></span><span>'+esc(o)+"</span></div>"}).join("");
+  const pal=cbt.qs.map((_,j)=>'<button type="button" class="cbt-pb '+cbtPaletteState(j)+(j===i?" cur":"")+'" data-cp="'+j+'" aria-label="Go to question '+(j+1)+'">'+(j+1)+"</button>").join("");
+  const an=cbt.sel.filter(s=>s!=null).length,mk=cbt.marked.size;
+  el("cbtPlay").innerHTML=
+   '<div class="cbt-topbar">'+
+     '<div class="cbt-qtag"><span class="chip mini">'+esc(q.s)+'</span><span class="badge '+(q.e==="AIIMS"?"b-fmge":q.e==="NEET"?"b-nug":"b-npg")+'">'+esc(q.e)+" "+q.y+'</span><span class="qcount">Question '+(i+1)+" of "+n+"</span></div>"+
+     '<div style="display:flex;gap:8px;align-items:center">'+
+       (cbt.end?'<span class="cbt-timer" id="cbtTimer">⏱ '+fmtCbt((cbt.end-Date.now())/1000)+"</span>":'<span class="cbt-timer">⏱ Untimed</span>')+
+       '<button type="button" id="cbtExit" class="btn secondary" style="padding:8px 12px">✕ Exit</button>'+
+     "</div></div>"+
+   '<div class="cbt-layout"><div class="cbt-main">'+
+     '<div class="cbt-stem">'+esc(q.q)+"</div>"+
+     '<div class="cbt-opts'+(instant?" done":"")+'" id="cbtOpts">'+opts+"</div>"+
+     (instant?
+       '<div class="feedback '+(cbt.sel[i]===q.a?"ok":"no")+'">'+(cbt.sel[i]===q.a?"🎉 Correct!":"❌ Not quite — the correct answer is "+"abcd"[q.a]+".")+"</div>"+
+       (q.x?'<div class="explain"><b>💡 Solution:</b> '+esc(q.x)+"</div>":"")
+       :"")+
+     '<div class="cbt-actions">'+
+       (instant?"":'<button type="button" id="cbtClear" class="btn secondary">Clear Response</button>')+
+       '<button type="button" id="cbtMark" class="btn secondary">🟪 Mark for Review &amp; Next</button>'+
+       '<button type="button" id="cbtPrev" class="btn secondary"'+(i===0?" disabled":"")+">← Previous</button>"+
+       '<button type="button" id="cbtSave" class="btn primary">'+(instant?(i===n-1?"See result 🏁":"Next question →"):(i===n-1?"Save":"Save &amp; Next →"))+"</button>"+
+     "</div></div>"+
+   '<aside class="cbt-palette"><div class="setuplabel" style="margin:0">Question Palette</div>'+
+     '<div class="cbt-grid">'+pal+"</div>"+
+     '<div class="cbt-legend"><span><i class="lg-an"></i>Answered ('+an+')</span><span><i class="lg-no"></i>Not answered</span><span><i class="lg-mk"></i>Marked ('+mk+')</span><span><i class="lg-nv"></i>Not visited</span></div>'+
+     '<div class="cbt-sum">Answered: <b>'+an+" / "+n+'</b><br>Marked for review: <b>'+mk+"</b></div>"+
+     '<div class="cbt-submitbar"><button type="button" id="cbtSubmit" class="btn primary" style="width:100%">Submit exam</button></div>'+
+   "</aside></div>"+
+   '<div id="cbtOverlay" class="cbt-overlay hidden"><div class="cbt-overlaybox"><h3 style="margin:0 0 8px">Submit exam?</h3><p style="margin:0 0 14px;font-size:14px;color:#5b7a88">Answered <b>'+an+"</b> · Not answered <b>"+(n-an)+"</b> · Marked <b>"+mk+"</b></p>"+'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button type="button" id="cbtGoBack" class="btn secondary">Keep going</button><button type="button" id="cbtConfirm" class="btn primary">Yes, submit</button></div></div></div>';
+}
+
+el("cbtPlay").addEventListener("click",e=>{
+  if(!cbt)return;
+  const opt=e.target.closest("[data-copt]");
+  if(opt){if(cbt.cfg.mode==="regular"&&cbt.sel[cbt.i]!=null)return;cbt.sel[cbt.i]=+opt.dataset.copt;renderCbtQ();return}
+  const pb=e.target.closest("[data-cp]");
+  if(pb){cbt.i=+pb.dataset.cp;renderCbtQ();return}
+  if(e.target.closest("#cbtSave")){if(cbt.i<cbt.qs.length-1){cbt.i++;renderCbtQ()}else if(cbt.cfg.mode==="regular"){submitCbt()}else{renderCbtQ();toast("Last question — submit when ready ✅")}return}
+  if(e.target.closest("#cbtPrev")){if(cbt.i>0){cbt.i--;renderCbtQ()}return}
+  if(e.target.closest("#cbtMark")){cbt.marked.add(cbt.i);if(cbt.i<cbt.qs.length-1){cbt.i++}renderCbtQ();return}
+  if(e.target.closest("#cbtClear")){cbt.sel[cbt.i]=null;renderCbtQ();return}
+  if(e.target.closest("#cbtExit")){clearInterval(cbt.timerId);cbt=null;el("cbtPlay").classList.add("hidden");el("cbtSetup").classList.remove("hidden");toast("Exam discarded.");return}
+  if(e.target.closest("#cbtSubmit")){el("cbtOverlay").classList.remove("hidden");return}
+  if(e.target.closest("#cbtGoBack")){el("cbtOverlay").classList.add("hidden");return}
+  if(e.target.closest("#cbtConfirm")){submitCbt();return}
+});
+
+function submitCbt(){
+  if(!cbt)return;
+  clearInterval(cbt.timerId);
+  const n=cbt.qs.length;
+  let correct=0,answered=0;
+  cbt.qs.forEach((q,j)=>{if(cbt.sel[j]!=null){answered++;if(cbt.sel[j]===q.a)correct++}});
+  stats.attempted+=answered;stats.correct+=correct;store.set("msh_stats",stats);updateStatsBar();
+  const skipped=n-answered,wrong=answered-correct,pct=Math.round(correct/n*100);
+  const used=(Date.now()-cbt.t0)/1000;
+  const cfg=cbt.cfg;
+  const tier=pct>=90?"🏆 Outstanding — exam-ready!":pct>=70?"🥇 Great score!":pct>=50?"💪 Solid effort — review the misses.":"📚 Every attempt builds recall — review and retry!";
+  const review=cbt.qs.map((q,j)=>{
+    const your=cbt.sel[j];
+    const rows=q.o.map((o,k)=>{
+      let cls="",tag="";
+      if(k===q.a){cls="opt correct";tag=" ✅ correct"}
+      else if(k===your){cls="opt wrong";tag=" ← your answer"}
+      return '<div class="opt '+cls+'" style="cursor:default"><span class="ol">'+"abcd"[k]+"</span><span>"+esc(o)+(tag?' <b style="font-size:11.5px">'+tag+"</b>":"")+"</span></div>";
+    }).join("");
+    const status=your==null?"⏭ Skipped":(your===q.a?"✅ Correct":"❌ Wrong");
+    return '<details class="revitem"'+((your!=null&&your!==q.a)?" open":"")+'><summary><b>Q'+(j+1)+"</b> · "+status+" · "+esc(q.s)+" ("+esc(q.e)+" "+q.y+')</summary><div class="qtext" style="font-size:14.5px">'+esc(q.q)+"</div>"+rows+(q.x?'<div class="explain" style="font-size:13.5px"><b>💡 Solution:</b> '+esc(q.x)+"</div>":"")+"</details>";
+  }).join("");
+  el("cbtPlay").classList.add("hidden");
+  const res=el("cbtResult");res.classList.remove("hidden");
+  res.innerHTML='<h2 style="margin:4px 0 0">🖥 CBT Result</h2>'+
+   '<div class="ringwrap"><svg viewBox="0 0 120 120"><defs><linearGradient id="gradRingC" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0fa385"/><stop offset="100%" stop-color="#28d5b0"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" id="cbtRingFg" cx="60" cy="60" r="52"/></svg><div class="ringscore"><div><span id="cbtRingPct">0%</span><small>'+correct+"/"+n+" correct</small></div></div></div>"+
+   '<div class="tiermsg">'+tier+"</div>"+
+   '<div class="resultstats">✅ Correct: <b>'+correct+"</b> · ❌ Wrong: <b>"+wrong+"</b> · ⏭ Skipped: <b>"+skipped+"</b> · ⏱ Time used: <b>"+fmtCbt(used)+"</b><br>"+(cfg.exam==="All"?"All exams":esc(cfg.exam))+(cfg.subject!=="All"?" · "+esc(cfg.subject):"")+(cfg.year!=="All"?" · "+cfg.year:"")+"</div>"+
+   '<div class="review"><h3>📖 Question-wise review (with the book&#39;s solutions)</h3>'+review+"</div>"+
+   '<div class="resultbtns"><button type="button" class="btn primary" data-cact="retry">🔁 Retake with new questions</button><button type="button" class="btn secondary" data-cact="settings">⚙️ New settings</button></div>';
+  requestAnimationFrame(()=>{requestAnimationFrame(()=>{el("cbtRingFg").style.strokeDashoffset=String(327*(1-pct/100))})});
+  countUp(el("cbtRingPct"),pct);
+  if(pct>=70)confetti();
+  res.scrollIntoView({behavior:"smooth",block:"start"});
+  cbt=null;
+}
+
+el("cbtResult").addEventListener("click",e=>{
+  const a=e.target.closest("[data-cact]");if(!a)return;
+  if(a.dataset.cact==="retry"){el("cbtResult").classList.add("hidden");startCbt()}
+  else{el("cbtResult").classList.add("hidden");el("cbtSetup").classList.remove("hidden");renderCbtSetup();el("cbtSetup").scrollIntoView({behavior:"smooth",block:"start"})}
+});
+
+/* ---------- discussions ---------- */
+  el("postBtn").addEventListener("click",()=>{if(!currentUser)showAuth("login");else toast("🚧 Discussions board is coming soon — ace those MCQs meanwhile!")});
+
+  /* ---------- AUTH (Supabase) ---------- */
+  let authMode="signup";
+  function setMsg(kind,text){
+    const m=el("authMsg");
+    if(!text){m.className="notice hidden";m.textContent="";return}
+    m.className="notice "+kind;m.textContent=text;
+  }
+  function hideResend(){el("resendBtn").classList.add("hidden")}
+  function showAuth(mode){
+    authMode=mode;
+    el("authTitle").textContent=mode==="signup"?"Create account":"Login";
+    el("submitAuth").textContent=mode==="signup"?"Sign up":"Login";
+    el("switchAuth").textContent=mode==="signup"?"Already have an account? Login":"Need an account? Sign up";
+    setMsg("");hideResend();
+    el("password").value="";
+    modal.classList.remove("hidden");modal.setAttribute("aria-hidden","false");
+    setTimeout(()=>el("email").focus(),50);
+  }
+  function closeAuth(){modal.classList.add("hidden");modal.setAttribute("aria-hidden","true");setMsg("");hideResend()}
+
+  el("signupBtn").addEventListener("click",()=>showAuth("signup"));
+  el("loginBtn").addEventListener("click",()=>showAuth("login"));
+  el("closeBtn").addEventListener("click",closeAuth);
+  el("switchAuth").addEventListener("click",e=>{e.preventDefault();showAuth(authMode==="signup"?"login":"signup")});
+  ["email","password"].forEach(id=>el(id).addEventListener("keydown",e=>{if(e.key==="Enter")el("submitAuth").click()}));
+
+  if(window.supabase&&typeof window.supabase.createClient==="function"){
+    client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  }else{
+    el("connBanner").classList.remove("hidden");
+  }
+
+  function friendlyError(err){
+    const code=(err&&(err.code||err.error_code))||"";
+    const msg=(err&&err.message)||"";
+    if(code==="email_not_confirmed"||/email not confirmed/i.test(msg))
+      return {special:"not_confirmed",text:"Your email is not confirmed yet. Check your inbox AND the spam folder for a message from Supabase (it can take a few minutes), click the confirmation link inside, then try again."};
+    if(code==="user_already_exists"||/already registered/i.test(msg))
+      return {text:"An account with this email already exists. If it is yours, switch to Login below. (If you signed up earlier but never confirmed, use the Resend button.)"};
+    if(code==="email_address_invalid"||/email address .* is invalid/i.test(msg))
+      return {text:"That email address looks invalid. Please use a real, working email address (for example name@gmail.com) - fake or temporary addresses are rejected."};
+    if(code==="invalid_credentials"||/invalid login credentials/i.test(msg))
+      return {text:"Wrong email or password. If you just signed up, remember to confirm your email first (check the spam folder)."};
+    if(code==="weak_password"||/password should be at least/i.test(msg))
+      return {text:"That password is too short. Please use at least 6 characters."};
+    if(code==="over_request_rate_limit"||/too many/i.test(msg))
+      return {text:"Too many attempts in a short time - please wait a few minutes and try again."};
+    if(code==="over_email_send_rate_limit"||/email rate limit exceeded/i.test(msg))
+      return {text:"Supabase's hourly email limit has been reached, so no confirmation email could be sent. Please wait an hour and try again. (Site owner tip: turn off 'Confirm email' in Supabase under Authentication - Providers - Email, and signups will work instantly without any emails.)"};
+    if(/failed to fetch|network/i.test(msg))
+      return {text:"Could not reach the server. Check your internet connection (or ad-blocker) and try again."};
+    return {text:msg||"Something went wrong. Please try again."};
+  }
+
+  el("submitAuth").addEventListener("click",async()=>{
+    const email=el("email").value.trim(),password=el("password").value;
+    if(!client){setMsg("err","Login is not connected right now. Refresh the page and try again - if it keeps happening, disable your ad-blocker for this site. Quizzes and MCQs work without logging in.");return}
+    if(!email||!password){setMsg("err","Please type both your email and your password.");return}
+    if(authMode==="signup"&&password.length<6){setMsg("err","Your password must be at least 6 characters long.");return}
+    el("submitAuth").disabled=true;setMsg("ok","Please wait...");
+    try{
+      const result=authMode==="signup"
+        ? await client.auth.signUp({email,password})
+        : await client.auth.signInWithPassword({email,password});
+      if(result.error)throw result.error;
+      if(authMode==="signup"&&!result.data.session){
+        setMsg("ok","Account created! We sent a confirmation link to "+email+". Open it (check the spam folder too), then come back and press Login. If the email never arrives, use the Resend button below.");
+        el("resendBtn").classList.remove("hidden");
+      }else{closeAuth();await refreshUser();toast("👋 Welcome, "+email+"!")}
+    }catch(err){
+      const f=friendlyError(err);
+      setMsg("err",f.text);
+      if(f.special==="not_confirmed")el("resendBtn").classList.remove("hidden");
+    }finally{el("submitAuth").disabled=false}
+  });
+
+  el("resendBtn").addEventListener("click",async()=>{
+    const email=el("email").value.trim();
+    if(!client){setMsg("err","Login is not connected right now. Refresh the page and try again.");return}
+    if(!email){setMsg("err","Please type the email address you signed up with, then press Resend.");return}
+    el("resendBtn").disabled=true;
+    try{
+      const {error}=await client.auth.resend({type:"signup",email});
+      if(error)throw error;
+      setMsg("ok","Confirmation email re-sent to "+email+". Check your inbox and spam folder - it can take a few minutes. Supabase limits how many emails can be sent per hour, so if it still does not arrive, try again later.");
+    }catch(err){setMsg("err",friendlyError(err).text)}
+    finally{el("resendBtn").disabled=false}
+  });
+
+  el("logoutBtn").addEventListener("click",async()=>{if(client)await client.auth.signOut();await refreshUser();toast("Logged out. See you soon! 👋")});
+
+  async function refreshUser(){
+    if(!client){currentUser=null;return}
+    const {data}=await client.auth.getSession();
+    currentUser=data.session?.user||null;
+    el("userText").textContent=currentUser?currentUser.email:"";
+    el("loginBtn").classList.toggle("hidden",!!currentUser);
+    el("signupBtn").classList.toggle("hidden",!!currentUser);
+    el("logoutBtn").classList.toggle("hidden",!currentUser);
+  }
+
+  /* Optional: pull questions from Supabase (new schema) if it has been seeded.
+     Falls back silently to the built-in bank otherwise. */
+  async function loadFromDB(){
+    if(!client)return;
+    try{
+      const {data,error}=await client.from("questions").select("*").eq("published",true).order("id",{ascending:true}).limit(500);
+      if(error||!Array.isArray(data)||!data.length)return;
+      if(data[0].options===undefined||data[0].answer===undefined)return; // old schema
+      const mapped=data.map(r=>({id:r.id,exam:r.exam||"FMGE",subject:r.subject||"General",topic:r.topic||"",q:r.question,options:Array.isArray(r.options)?r.options:[],answer:Number(r.answer)||0,explanation:r.explanation||"",level:r.level||"Moderate"})).filter(q=>q.options.length>=2);
+      if(mapped.length){bank=mapped;renderFilterBar();renderSetup();applyFilters();updateHero()}
+    }catch(e){}
+  }
+
+  /* ---------- back-to-top + hero count-up ---------- */
+  const toTopBtn=el("toTop");
+  window.addEventListener("scroll",function(){toTopBtn.classList.toggle("show",window.scrollY>500)},{passive:true});
+  toTopBtn.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+  function animateNumber(node,target){
+    const t0=performance.now(),dur=1000;
+    (function step(t){
+      const p=Math.min((t-t0)/dur,1);
+      node.textContent=Math.round(target*(1-Math.pow(1-p,3)));
+      if(p<1)requestAnimationFrame(step);
+    })(t0);
+  }
+
+  /* ---------- WELCOME PAGE + MCQ OF THE DAY ---------- */
+  const welcome=el("welcome");
+  function closeWelcome(goto){
+    welcome.classList.remove("open");
+    document.body.style.overflow="";
+    setTimeout(function(){welcome.classList.add("gone")},480);
+    if(goto){setView(goto);window.scrollTo({top:0,behavior:"smooth"})}
+  }
+  el("wEnter").addEventListener("click",()=>closeWelcome());
+  welcome.addEventListener("click",e=>{const t=e.target.closest("[data-goto]");if(t)closeWelcome(t.dataset.goto)});
+  document.querySelectorAll(".heroaction").forEach(b=>b.addEventListener("click",()=>{
+    setView(b.dataset.goto);window.scrollTo({top:0,behavior:"smooth"});
+  }));
+
+  function renderMcqOfDay(){
+    const now=new Date();
+    const start=new Date(now.getFullYear(),0,0);
+    const doy=Math.floor((now-start)/864e5);
+    const q=bank[doy%bank.length];
+    if(!q)return;
+    el("wDate").textContent=now.toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"});
+    el("wSubj").textContent=q.subject+" · "+q.exam;
+    el("wQ").textContent=q.q;
+    el("wOpts").innerHTML=q.options.map((o,j)=>
+      '<button type="button" class="opt" data-wopt="'+j+'"><span class="ol">'+"abcd"[j]+'</span><span>'+esc(o)+"</span></button>").join("");
+    el("wFeedback").className="notice hidden";
+    el("wOpts").querySelectorAll("[data-wopt]").forEach(b=>b.addEventListener("click",function(){
+      const sel=+this.dataset.wopt,ok=sel===q.answer;
+      el("wOpts").classList.add("done");
+      el("wOpts").querySelectorAll(".opt").forEach((o,j)=>{
+        if(j===q.answer)o.classList.add("correct");
+        else if(j===sel)o.classList.add("wrong");
+      });
+      const fb=el("wFeedback");
+      fb.className="notice "+(ok?"ok":"err");
+      fb.innerHTML=(ok?"🎉 <b>Correct!</b> ":"❌ <b>Not quite — the answer is "+"abcd"[q.answer]+".</b> ")+
+        esc(q.explanation)+"<br><span style='font-size:12.5px;opacity:.75'>New question unlocks tomorrow 🌅</span>";
+    },{once:true}));
+  }
+
+  /* ---------- email copy (mailto often does nothing on phones) ---------- */
+  el("emailCopyBtn").addEventListener("click",async()=>{
+    const addr="tahseenwani222@gmail.com";
+    let done=false;
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(addr);done=true}}catch(e){}
+    if(!done){
+      try{
+        const ta=document.createElement("textarea");
+        ta.value=addr;ta.style.position="fixed";ta.style.opacity="0";
+        document.body.appendChild(ta);ta.select();
+        done=document.execCommand("copy");
+        document.body.removeChild(ta);
+      }catch(e){}
+    }
+    if(done)toast("📋 Email copied — paste it into your mail app!");
+    else window.location.href="mailto:"+addr+"?subject=MedStudentHub%20Suggestion";
+  });
+
+  /* ---------- boot ---------- */
+  (async function start(){
+    updateHero();
+    renderMcqOfDay();
+    welcome.classList.add("open");document.body.style.overflow="hidden";
+    animateNumber(el("hsQ"),bank.length);animateNumber(el("hsS"),subjects().length);renderFilterBar();renderSetup();applyFilters();updateStatsBar();
+    await refreshUser();
+    loadFromDB();
+  })();
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a380ea73e98e5667',t:'MTc4ODkwMTU3Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
