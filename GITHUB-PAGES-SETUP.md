@@ -1,21 +1,14 @@
-# MedStudentHub — GitHub Pages setup
+# MedStudentHub GitHub Pages deployment
 
-This project is configured for:
-
-`https://tahseen-nazir.github.io/medstudenthub/`
-
-## 1. Upload the project
-Replace the contents of the `main` branch of your `medstudenthub` repository with the contents of this folder.
-
-Do not upload `node_modules`; it is not included in the ZIP.
-
-## 2. Enable GitHub Pages
-GitHub repository → Settings → Pages → Build and deployment → Source → **GitHub Actions**.
-
-## 3. Deploy
-Commit/push to `main`. The workflow in `.github/workflows/deploy.yml` will install dependencies, build the Vite app, and publish `dist`.
-
-## 4. Open
-After the Actions workflow finishes, open:
-
+This is a Vite + React project configured for:
 https://tahseen-nazir.github.io/medstudenthub/
+
+## Upload
+Upload the contents of this folder to the ROOT of the `medstudenthub` repository. Make sure the entire `src/` folder is uploaded.
+
+Keep your existing `pyqbank.js` if you already have it; this design does not delete it.
+
+## GitHub Pages
+In Settings -> Pages, set **Source** to **GitHub Actions**.
+
+The workflow in `.github/workflows/main.yml` installs dependencies, runs `npm run build`, uploads `dist`, and deploys it to Pages.
