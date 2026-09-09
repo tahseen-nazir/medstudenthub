@@ -428,10 +428,10 @@ footer{margin-top:46px;background:rgba(255,255,255,.02);border-top:1px solid var
 <h3>💬 Got suggestions?</h3>
 <p class="lead">Ideas for new features, spotted a mistake in a question, or just want to say hi? Drop a message — I read everything.</p>
 <div class="socialbtns">
-<button type="button" class="sbtn email" id="emailCopyBtn" title="Click to copy my email address"><span class="sic">📧</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="295d48415a4c4c475e4847401b1b1b694e44484045074a4644">[email&#160;protected]</a></button>
+<button type="button" class="sbtn email" id="emailCopyBtn" data-email="tahseenwani222@gmail.com" title="Click to copy my email address" aria-label="Copy email address tahseenwani222@gmail.com"><span class="sic">📧</span> <span class="slabel">tahseenwani222@gmail.com</span></button>
 <a class="sbtn insta" href="https://www.instagram.com/tahseen_nazir" target="_blank" rel="noopener"><span class="sic">📸</span> @tahseen_nazir</a>
 </div>
-<p class="minilink">💡 Click the email to <b>copy</b> it — or <a href="/cdn-cgi/l/email-protection#2f5b4e475c4a4a41584e41461d1d1d6f48424e4643014c4042105c5a4d454a4c5b12624a4b7c5b5a4b4a415b675a4d0a1d1f7c5a48484a5c5b464041">open your mail app ↗</a></p>
+<p class="minilink">💡 Click the email to <b>copy</b> it — or <a id="emailMailto" href="mailto:tahseenwani222@gmail.com?subject=MedStudentHub%20Suggestion">open your mail app ↗</a></p>
 <p class="credit"><b>MedStudentHub</b> — built with 💚 by <b>Tahseen Nazir</b> for medical students<br>
 Questions are PYQ-style practice material modelled on FMGE &amp; NEET-PG patterns. Always cross-check with standard textbooks.</p>
 </div>
@@ -456,7 +456,7 @@ Questions are PYQ-style practice material modelled on FMGE &amp; NEET-PG pattern
 <div id="confetti" aria-hidden="true"></div>
 <div id="toast" role="status"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ============ QUESTION BANK ============
 High-yield FMGE / NEET-PG PYQ-style questions.
@@ -1144,21 +1144,29 @@ el("cbtResult").addEventListener("click",e=>{
   }
 
   /* ---------- email copy (mailto often does nothing on phones) ---------- */
-  el("emailCopyBtn").addEventListener("click",async()=>{
-    const addr="tahseenwani222@gmail.com";
+  const EMAIL_ADDR=(function(){
+    const b=el("emailCopyBtn");
+    return (b&&b.dataset.email)||"tahseenwani222@gmail.com";
+  })();
+  if(el("emailCopyBtn"))el("emailCopyBtn").addEventListener("click",async()=>{
     let done=false;
-    try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(addr);done=true}}catch(e){}
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(EMAIL_ADDR);done=true}}catch(e){}
     if(!done){
       try{
         const ta=document.createElement("textarea");
-        ta.value=addr;ta.style.position="fixed";ta.style.opacity="0";
-        document.body.appendChild(ta);ta.select();
+        ta.value=EMAIL_ADDR;ta.setAttribute("readonly","");
+        ta.style.position="fixed";ta.style.top="0";ta.style.left="0";ta.style.opacity="0";
+        document.body.appendChild(ta);
+        ta.focus();ta.select();
         done=document.execCommand("copy");
         document.body.removeChild(ta);
       }catch(e){}
     }
     if(done)toast("📋 Email copied — paste it into your mail app!");
-    else window.location.href="mailto:"+addr+"?subject=MedStudentHub%20Suggestion";
+    else{
+      toast("📧 "+EMAIL_ADDR);
+      window.location.href="mailto:"+EMAIL_ADDR+"?subject=MedStudentHub%20Suggestion";
+    }
   });
 
   /* ---------- boot ---------- */
